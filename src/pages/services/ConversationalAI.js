@@ -19,6 +19,9 @@ import {
 } from "lucide-react";
 import AnimatedSection from "../../components/ui/AnimatedSection";
 import PageHero from "../../components/ui/PageHero";
+import Seo from "../../components/ui/Seo";
+import JsonLd from "../../components/ui/JsonLd";
+import { serviceSchema } from "../../seo/schemas";
 
 const containerVariants = {
   hidden: {},
@@ -39,7 +42,7 @@ const capabilities = [
     icon: MessagesSquare,
     title: "Website Chatbots",
     description:
-      "Intelligent chatbots that engage visitors, answer questions, qualify leads, and book meetings — all without human intervention.",
+      "Intelligent chatbots that engage visitors, answer questions, qualify leads, and book meetings, all without human intervention.",
   },
   {
     icon: Phone,
@@ -51,7 +54,7 @@ const capabilities = [
     icon: Globe,
     title: "WhatsApp & Social Media",
     description:
-      "Deploy conversational AI across WhatsApp, Instagram, Facebook Messenger, and more — meeting customers where they already are.",
+      "Deploy conversational AI across WhatsApp, Instagram, Facebook Messenger, and more, meeting customers where they already are.",
   },
   {
     icon: Languages,
@@ -69,7 +72,7 @@ const capabilities = [
     icon: Headphones,
     title: "Seamless Handoff",
     description:
-      "When human touch is needed, AI smoothly transfers the conversation with full context — no customer has to repeat themselves.",
+      "When human touch is needed, AI smoothly transfers the conversation with full context, no customer has to repeat themselves.",
   },
 ];
 
@@ -100,10 +103,23 @@ const ConversationalAI = () => {
       transition={{ duration: 0.4 }}
     >
       {/* ════════ HERO ════════ */}
+      <Seo
+        title="AI Chatbots & Voice Agents for Business | Codilated"
+        description="Deploy AI chatbots and voice agents across web, WhatsApp, Instagram, and phone. Engage customers 24/7 with conversational AI that converts."
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: "AI Chatbots & Voice Agents",
+          description:
+            "Conversational AI chatbots and voice agents deployed across websites, WhatsApp, Instagram, Facebook Messenger, and phone in 30+ languages.",
+          slug: "/services/conversational-ai",
+          serviceType: "Conversational AI Development",
+        })}
+      />
       <PageHero
         tag="Conversational AI"
         title="AI Chatbots & Voice Agents"
-        description="Deploy intelligent conversational AI across every channel — websites, WhatsApp, social media, and phone — to engage customers 24/7."
+        description="Deploy intelligent conversational AI across every channel, websites, WhatsApp, social media, and phone, to engage customers 24/7."
       />
 
       {/* ════════ METRICS BAR ════════ */}
@@ -152,7 +168,7 @@ const ConversationalAI = () => {
               <span className="gradient-text">Convert</span>
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto text-lg">
-              Our conversational AI goes beyond scripted responses — it
+              Our conversational AI goes beyond scripted responses, it
               understands context, remembers history, and drives real business
               outcomes.
             </p>
@@ -270,7 +286,7 @@ const ConversationalAI = () => {
               </h2>
               <p className="text-white/50 text-lg mb-8 leading-relaxed">
                 Deploy your AI agent once and reach customers across all their
-                preferred channels — with consistent brand voice and full context
+                preferred channels, with consistent brand voice and full context
                 awareness.
               </p>
 
@@ -348,7 +364,7 @@ const ConversationalAI = () => {
               <div className="relative">
                 <div className="glass-card p-8">
                   <div className="text-sm font-mono text-white/30 mb-6">
-                    Voice Agent — Live Call
+                    Voice Agent, Live Call
                   </div>
 
                   {/* Waveform visual */}
@@ -418,7 +434,7 @@ const ConversationalAI = () => {
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
               Deploy an AI agent that engages customers across every channel,
-              qualifies leads, and books meetings — all while you sleep.
+              qualifies leads, and books meetings, all while you sleep.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

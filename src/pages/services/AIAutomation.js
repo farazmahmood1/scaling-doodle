@@ -19,6 +19,9 @@ import {
 } from "lucide-react";
 import AnimatedSection from "../../components/ui/AnimatedSection";
 import PageHero from "../../components/ui/PageHero";
+import Seo from "../../components/ui/Seo";
+import JsonLd from "../../components/ui/JsonLd";
+import { serviceSchema } from "../../seo/schemas";
 
 const containerVariants = {
   hidden: {},
@@ -45,7 +48,7 @@ const capabilities = [
     icon: Users,
     title: "AI Lead Generation",
     description:
-      "Intelligent prospecting that identifies, qualifies, and scores leads automatically — filling your pipeline 24/7 on autopilot.",
+      "Intelligent prospecting that identifies, qualifies, and scores leads automatically, filling your pipeline 24/7 on autopilot.",
   },
   {
     icon: Database,
@@ -120,11 +123,24 @@ const AIAutomation = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
+      <Seo
+        title="AI Automation & Process Optimization Services | Codilated"
+        description="Automate lead generation, email marketing, HR, and back-office workflows with AI agents that run 24/7, cut costs and reclaim hundreds of hours each month."
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: "AI Automation & Process Optimization",
+          description:
+            "Automate lead generation, email marketing, HR, and back-office workflows with intelligent AI agents that run 24/7.",
+          slug: "/services/ai-automation",
+          serviceType: "AI Automation Consulting",
+        })}
+      />
       {/* ════════ HERO ════════ */}
       <PageHero
         tag="Flagship Service"
         title="AI Automation & Process Optimization"
-        description="Automate repetitive business processes with intelligent AI systems that work 24/7 — saving your team hundreds of hours every month."
+        description="Automate repetitive business processes with intelligent AI systems that work 24/7, saving your team hundreds of hours every month."
       />
 
       {/* ════════ METRICS BAR ════════ */}
@@ -173,7 +189,7 @@ const AIAutomation = () => {
               Capabilities
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto text-lg">
-              From lead generation to HR workflows — we automate the tasks that
+              From lead generation to HR workflows, we automate the tasks that
               drain your team's time and energy.
             </p>
           </AnimatedSection>
@@ -406,7 +422,7 @@ const AIAutomation = () => {
                     </div>
                     <div className="mt-4 pt-4 border-t border-white/5">
                       <span className="text-green-400/50">
-                        # Running 24/7 — 1,247 leads processed this week
+                        # Running 24/7, 1,247 leads processed this week
                       </span>
                     </div>
                   </div>

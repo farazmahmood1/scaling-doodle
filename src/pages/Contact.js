@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import {
+  AlertCircle,
   ArrowRight,
+  Loader2,
   Mail,
   Phone,
   MapPin,
@@ -13,6 +16,9 @@ import {
   ChevronDown,
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
+import Seo from "../components/ui/Seo";
+import JsonLd from "../components/ui/JsonLd";
+import { faqSchema } from "../seo/schemas";
 
 // ─── Animation Variants ─────────────────────────────────────────────
 const containerVariants = {
@@ -36,21 +42,21 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    value: "hello@codilated.com",
+    value: "info@codilated.com",
     description: "We'll respond within 24 hours",
-    href: "mailto:hello@codilated.com",
+    href: "mailto:info@codilated.com",
   },
   {
     icon: Phone,
     title: "Call Us",
-    value: "+1 (234) 567-890",
+    value: "+1 (805) 251-9188",
     description: "Mon–Fri, 9 AM – 6 PM EST",
-    href: "tel:+1234567890",
+    href: "tel:+18052519188",
   },
   {
     icon: MapPin,
     title: "Location",
-    value: "Global — Remote First",
+    value: "Global, Remote First",
     description: "Serving clients worldwide",
     href: null,
   },
@@ -87,7 +93,7 @@ const faqs = [
   {
     question: "Can you integrate AI into our existing systems?",
     answer:
-      "Absolutely. We specialize in integrating AI capabilities into existing tech stacks — CRMs, ERPs, marketing tools, and custom platforms — with minimal disruption.",
+      "Absolutely. We specialize in integrating AI capabilities into existing tech stacks, CRMs, ERPs, marketing tools, and custom platforms, with minimal disruption.",
   },
 ];
 
@@ -133,8 +139,32 @@ const FAQItem = ({ question, answer, index }) => {
   );
 };
 
+// ─── EmailJS Config ──────────────────────────────────────────────────
+// Public credentials are safe in the browser bundle. The "private key" from
+// the EmailJS dashboard is for server-side strict mode only — never ship it.
+const EMAILJS_SERVICE_ID = "service_tszw8fnå";
+const EMAILJS_TEMPLATE_ID = "template_wxhypsd";
+const EMAILJS_PUBLIC_KEY = "XCP4G2fWIRPUWixZ1";
+
+const SERVICE_LABELS = {
+  "ai-automation": "AI Automation & Process Optimization",
+  "conversational-ai": "Conversational AI & Voice Agents",
+  "custom-ai-development": "Custom AI Web & SaaS Development",
+  "ai-data-analytics": "AI Data & Predictive Analytics",
+  other: "Other / Not Sure",
+};
+
+const BUDGET_LABELS = {
+  "5k-10k": "$5,000 – $10,000",
+  "10k-25k": "$10,000 – $25,000",
+  "25k-50k": "$25,000 – $50,000",
+  "50k+": "$50,000+",
+  "not-sure": "Not Sure Yet",
+};
+
 // ─── Component ───────────────────────────────────────────────────────
 const Contact = () => {
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -144,14 +174,48 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          reply_to: formData.email,
+          company: formData.company || "—",
+          service: SERVICE_LABELS[formData.service] || "Not specified",
+          budget: BUDGET_LABELS[formData.budget] || "Not specified",
+          message: formData.message,
+          submitted_at: new Date().toLocaleString("en-US", {
+            dateStyle: "full",
+            timeStyle: "short",
+          }),
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("EmailJS send failed:", err);
+      setSubmitError(
+        err?.text ||
+          "We couldn't send your message. Please try again, or email info@codilated.com directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -161,6 +225,11 @@ const Contact = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
+      <Seo
+        title="Contact Codilated, Free AI Strategy Call & Project Quote"
+        description="Schedule a free AI discovery call with Codilated. Get a transparent quote on AI automation, chatbots, custom AI apps, or predictive analytics."
+      />
+      <JsonLd data={faqSchema(faqs)} />
       {/* ════════ HERO SECTION ════════ */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-hero-gradient overflow-hidden noise-overlay">
         {/* Background decorative elements */}
@@ -283,7 +352,7 @@ const Contact = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-            {/* Left — Form */}
+            {/* Left, Form */}
             <AnimatedSection className="lg:col-span-3" direction="left">
               <div className="glass-card p-8 sm:p-10">
                 {isSubmitted ? (
@@ -331,7 +400,17 @@ const Contact = () => {
                       </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form
+                      ref={formRef}
+                      onSubmit={handleSubmit}
+                      className="space-y-6"
+                    >
+                      {submitError && (
+                        <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-sm text-red-200">
+                          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                          <span>{submitError}</span>
+                        </div>
+                      )}
                       <div className="grid sm:grid-cols-2 gap-6">
                         <div>
                           <label className="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">
@@ -476,10 +555,20 @@ const Contact = () => {
 
                       <button
                         type="submit"
-                        className="btn-coral inline-flex items-center gap-2 text-base px-8 py-4 w-full sm:w-auto justify-center"
+                        disabled={isSubmitting}
+                        className="btn-coral inline-flex items-center gap-2 text-base px-8 py-4 w-full sm:w-auto justify-center disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        <Send className="w-4 h-4" />
-                        Send Message
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4" />
+                            Send Message
+                          </>
+                        )}
                       </button>
                     </form>
                   </>
@@ -487,7 +576,7 @@ const Contact = () => {
               </div>
             </AnimatedSection>
 
-            {/* Right — Side Info */}
+            {/* Right, Side Info */}
             <AnimatedSection className="lg:col-span-2" direction="right">
               <div className="space-y-6">
                 {/* Why reach out card */}
@@ -544,11 +633,11 @@ const Contact = () => {
                     via email or phone.
                   </p>
                   <a
-                    href="mailto:hello@codilated.com"
+                    href="mailto:info@codilated.com"
                     className="btn-outline inline-flex items-center gap-2 text-sm w-full justify-center"
                   >
                     <Mail className="w-4 h-4" />
-                    hello@codilated.com
+                    info@codilated.com
                   </a>
                 </div>
 
@@ -622,10 +711,10 @@ const Contact = () => {
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
               Whether you need AI automation, conversational agents, or a custom
-              AI-powered platform — we're ready to bring your vision to life.
+              AI-powered platform, we're ready to bring your vision to life.
             </p>
             <a
-              href="mailto:hello@codilated.com"
+              href="mailto:info@codilated.com"
               className="btn-coral inline-flex items-center gap-2 text-lg px-10 py-4"
             >
               Email Us Directly

@@ -19,6 +19,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
+import Seo from "../components/ui/Seo";
 
 // ─── Animation Variants ─────────────────────────────────────────────
 const containerVariants = {
@@ -49,7 +50,7 @@ const values = [
     icon: Target,
     title: "Results-Driven",
     description:
-      "Every project is benchmarked against measurable outcomes — time saved, revenue gained, efficiency improved.",
+      "Every project is benchmarked against measurable outcomes, time saved, revenue gained, efficiency improved.",
   },
   {
     icon: Handshake,
@@ -67,7 +68,7 @@ const values = [
     icon: Rocket,
     title: "Speed to Market",
     description:
-      "We move fast without cutting corners — agile sprints, rapid prototyping, and iterative delivery.",
+      "We move fast without cutting corners, agile sprints, rapid prototyping, and iterative delivery.",
   },
   {
     icon: Eye,
@@ -105,7 +106,7 @@ const team = [
 ];
 
 const milestones = [
-  { year: "2019", title: "Founded", desc: "Codilated was born from a simple belief — AI should be accessible to every business." },
+  { year: "2019", title: "Founded", desc: "Codilated was born from a simple belief, AI should be accessible to every business." },
   { year: "2020", title: "First Enterprise Client", desc: "Landed our first Fortune 500 contract, automating supply chain workflows." },
   { year: "2022", title: "50+ Projects Delivered", desc: "Expanded our team and crossed the 50-project milestone with a 98% satisfaction rate." },
   { year: "2024", title: "Global Expansion", desc: "Opened operations across 3 continents, serving clients in 15+ countries." },
@@ -128,6 +129,10 @@ const About = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
+      <Seo
+        title="About Codilated, AI Engineers Building Smarter Workflows"
+        description="Meet the AI engineering team behind Codilated. We design intelligent automation, conversational AI, and custom ML systems that deliver measurable ROI."
+      />
       {/* ════════ HERO SECTION ════════ */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-hero-gradient noise-overlay">
         {/* Background Decorations */}
@@ -272,7 +277,7 @@ const About = () => {
                   massive.
                 </p>
                 <p>
-                  We set out to bridge that gap — building a team that combines deep
+                  We set out to bridge that gap, building a team that combines deep
                   AI expertise with real-world business understanding. Today, we've
                   delivered 150+ projects across industries, helping companies
                   automate workflows, build intelligent products, and unlock the
@@ -286,7 +291,7 @@ const About = () => {
               </div>
             </AnimatedSection>
 
-            {/* Story Visual — Timeline */}
+            {/* Story Visual, Timeline */}
             <AnimatedSection direction="right">
               <div className="relative">
                 <div className="glass-card p-8 space-y-1">
@@ -453,7 +458,7 @@ const About = () => {
                 </h3>
                 <p className="text-white/50 text-lg leading-relaxed">
                   To democratize artificial intelligence by building practical,
-                  powerful AI solutions that any business can deploy — regardless
+                  powerful AI solutions that any business can deploy, regardless
                   of size, industry, or technical expertise. We believe the
                   companies that embrace AI today will define the industries of
                   tomorrow.
@@ -470,7 +475,7 @@ const About = () => {
                   Our Vision
                 </h3>
                 <p className="text-white/50 text-lg leading-relaxed">
-                  A world where every business has an AI co-pilot — automating the
+                  A world where every business has an AI co-pilot, automating the
                   mundane, surfacing insights from data, and empowering teams to
                   focus on creative, high-impact work. We envision a future where
                   human ingenuity and AI capability work hand in hand.
@@ -496,7 +501,7 @@ const About = () => {
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
               Whether you're looking to automate your business, build an
-              AI-powered product, or just explore what's possible — let's talk.
+              AI-powered product, or just explore what's possible, let's talk.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact" className="btn-coral inline-flex items-center gap-2 text-lg px-10 py-4">

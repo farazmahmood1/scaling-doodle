@@ -55,13 +55,13 @@ const Footer = () => {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-coral/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* CTA Banner */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative -top-16 bg-gradient-to-r from-coral to-coral-light rounded-2xl p-8 sm:p-12 overflow-hidden"
+          className="relative bg-gradient-to-r from-coral to-coral-light rounded-2xl p-8 sm:p-12 overflow-hidden"
         >
           {/* CTA decorative elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
@@ -89,7 +89,7 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4 pb-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-4">
@@ -109,22 +109,22 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="space-y-3">
               <a
-                href="mailto:hello@codilated.com"
+                href="mailto:info@codilated.com"
                 className="flex items-center gap-3 text-sm text-white/50 hover:text-coral transition-colors duration-200"
               >
                 <Mail className="w-4 h-4 text-coral flex-shrink-0" />
-                hello@codilated.com
+                info@codilated.com
               </a>
               <a
-                href="tel:+1234567890"
+                href="tel:+18052519188"
                 className="flex items-center gap-3 text-sm text-white/50 hover:text-coral transition-colors duration-200"
               >
                 <Phone className="w-4 h-4 text-coral flex-shrink-0" />
-                +1 (234) 567-890
+                +1 (805) 251-9188
               </a>
               <div className="flex items-center gap-3 text-sm text-white/50">
                 <MapPin className="w-4 h-4 text-coral flex-shrink-0" />
-                Global — Remote First
+                Global, Remote First
               </div>
             </div>
           </div>

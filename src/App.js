@@ -10,6 +10,10 @@ import { AnimatePresence } from "framer-motion";
 // Layout
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import WhatsAppButton from "./components/ui/WhatsAppButton";
+import Seo from "./components/ui/Seo";
+import JsonLd from "./components/ui/JsonLd";
+import { organizationSchema, websiteSchema } from "./seo/schemas";
 
 // Pages
 import Home    from "./pages/Home";
@@ -76,6 +80,11 @@ function AnimatedRoutes() {
 function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-navy">
+      <Seo
+        title="Page Not Found (404) | Codilated"
+        description="The page you're looking for doesn't exist. Return to Codilated to explore our AI automation, chatbot, and custom AI development services."
+        noindex
+      />
       <span className="section-tag mb-4">404 Error</span>
       <h1 className="text-6xl font-black text-white mb-4">Page Not Found</h1>
       <p className="text-white/60 mb-8">
@@ -92,12 +101,15 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={websiteSchema()} />
       <div className="relative min-h-screen bg-navy overflow-x-hidden">
         <Navbar />
         <main>
           <AnimatedRoutes />
         </main>
         <Footer />
+        <WhatsAppButton />
       </div>
     </Router>
   );

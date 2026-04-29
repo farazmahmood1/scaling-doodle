@@ -16,6 +16,7 @@ import {
   Code2,
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
+import Seo from "../components/ui/Seo";
 
 // ─── Animation Variants ─────────────────────────────────────────────
 const containerVariants = {
@@ -60,7 +61,7 @@ const blogPosts = [
     id: "building-conversational-ai-agents",
     title: "Building Conversational AI Agents That Actually Convert",
     excerpt:
-      "Learn the architecture behind AI chatbots and voice agents that drive real business results — from lead qualification to customer support.",
+      "Learn the architecture behind AI chatbots and voice agents that drive real business results, from lead qualification to customer support.",
     category: "Conversational AI",
     author: "Hashim Ali",
     date: "March 15, 2025",
@@ -86,7 +87,7 @@ const blogPosts = [
     id: "machine-learning-production-best-practices",
     title: "Machine Learning in Production: Best Practices for 2025",
     excerpt:
-      "From model training to deployment — a comprehensive guide to building ML pipelines that are robust, scalable, and maintainable in production.",
+      "From model training to deployment, a comprehensive guide to building ML pipelines that are robust, scalable, and maintainable in production.",
     category: "Machine Learning",
     author: "Hashim Ali",
     date: "February 22, 2025",
@@ -112,7 +113,7 @@ const blogPosts = [
     id: "custom-ai-saas-development-guide",
     title: "The Complete Guide to Custom AI SaaS Development",
     excerpt:
-      "Everything you need to know about building AI-powered SaaS products — from architecture decisions to intelligent feature design.",
+      "Everything you need to know about building AI-powered SaaS products, from architecture decisions to intelligent feature design.",
     category: "Industry Trends",
     author: "Hashim Ali",
     date: "January 30, 2025",
@@ -147,6 +148,10 @@ const Blog = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
+      <Seo
+        title="AI Insights & Automation Blog | Codilated"
+        description="Practical guides on AI automation, machine learning, conversational AI, and predictive analytics, written by Codilated's AI engineers."
+      />
       {/* ════════ HERO ════════ */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-hero-gradient noise-overlay overflow-hidden">
         {/* Background decorations */}

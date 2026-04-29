@@ -19,6 +19,9 @@ import {
 } from "lucide-react";
 import AnimatedSection from "../../components/ui/AnimatedSection";
 import PageHero from "../../components/ui/PageHero";
+import Seo from "../../components/ui/Seo";
+import JsonLd from "../../components/ui/JsonLd";
+import { serviceSchema } from "../../seo/schemas";
 
 const containerVariants = {
   hidden: {},
@@ -39,7 +42,7 @@ const capabilities = [
     icon: Layers,
     title: "AI-Powered Web Apps",
     description:
-      "Full-stack web applications with AI baked into the core — from intelligent search to personalized content and smart recommendations.",
+      "Full-stack web applications with AI baked into the core, from intelligent search to personalized content and smart recommendations.",
   },
   {
     icon: Blocks,
@@ -57,7 +60,7 @@ const capabilities = [
     icon: Palette,
     title: "AI-Driven UX",
     description:
-      "User interfaces that adapt to behavior — dynamic layouts, personalized content, and predictive navigation paths.",
+      "User interfaces that adapt to behavior, dynamic layouts, personalized content, and predictive navigation paths.",
   },
   {
     icon: Database,
@@ -69,7 +72,7 @@ const capabilities = [
     icon: Cloud,
     title: "Cloud-Native Architecture",
     description:
-      "Scalable, serverless infrastructure designed for AI workloads — auto-scaling, edge deployment, and cost optimization.",
+      "Scalable, serverless infrastructure designed for AI workloads, auto-scaling, edge deployment, and cost optimization.",
   },
 ];
 
@@ -96,6 +99,19 @@ const CustomAIDev = () => {
       transition={{ duration: 0.4 }}
     >
       {/* ════════ HERO ════════ */}
+      <Seo
+        title="Custom AI Web & SaaS Development Services | Codilated"
+        description="Full-stack, AI-powered web apps and SaaS products with intelligent personalization, smart recommendations, and ML systems built to scale."
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: "Custom AI Web & SaaS Development",
+          description:
+            "Full-stack AI-powered web applications and SaaS products with intelligent personalization, recommendations, and integrated ML models.",
+          slug: "/services/custom-ai-development",
+          serviceType: "Custom AI Software Development",
+        })}
+      />
       <PageHero
         tag="Custom Development"
         title="Custom AI Web & SaaS Development"
@@ -273,7 +289,7 @@ const CustomAIDev = () => {
                 <span className="gradient-text">Thinks for Itself</span>
               </h2>
               <p className="text-white/50 text-lg mb-8 leading-relaxed">
-                We build products where AI isn't a feature — it's the
+                We build products where AI isn't a feature, it's the
                 foundation. Every component is designed to learn, adapt, and
                 deliver smarter experiences over time.
               </p>
@@ -410,7 +426,7 @@ const CustomAIDev = () => {
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
               Whether it's a SaaS platform, internal tool, or customer-facing
-              app — we'll build it with AI at the core.
+              app, we'll build it with AI at the core.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

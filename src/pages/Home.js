@@ -20,6 +20,7 @@ import {
   Play,
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
+import Seo from "../components/ui/Seo";
 
 // ─── Animation Variants ─────────────────────────────────────────────
 const containerVariants = {
@@ -53,7 +54,7 @@ const services = [
     icon: MessageSquare,
     title: "Conversational AI & Voice Agents",
     description:
-      "Deploy AI chatbots across websites, WhatsApp, and social media — plus voice agents that handle calls autonomously.",
+      "Deploy AI chatbots across websites, WhatsApp, and social media, plus voice agents that handle calls autonomously.",
     href: "/services/conversational-ai",
     tag: null,
     color: "sky",
@@ -82,7 +83,7 @@ const whyChooseUs = [
   {
     icon: Zap,
     title: "AI-First Approach",
-    description: "Every solution is built with artificial intelligence at its core — not bolted on as an afterthought.",
+    description: "Every solution is built with artificial intelligence at its core, not bolted on as an afterthought.",
   },
   {
     icon: Shield,
@@ -97,7 +98,7 @@ const whyChooseUs = [
   {
     icon: TrendingUp,
     title: "Measurable ROI",
-    description: "Every automation we build is benchmarked against real KPIs — time saved, costs reduced, revenue gained.",
+    description: "Every automation we build is benchmarked against real KPIs, time saved, costs reduced, revenue gained.",
   },
   {
     icon: Users,
@@ -118,10 +119,6 @@ const stats = [
   { value: "10x", label: "Average ROI" },
 ];
 
-const trustedLogos = [
-  "TechCorp", "DataFlow", "NeuralSync", "CloudMind", "AutomateX", "IntelliSys",
-];
-
 // ─── Component ───────────────────────────────────────────────────────
 const Home = () => {
   return (
@@ -131,6 +128,10 @@ const Home = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
     >
+      <Seo
+        title="AI Automation & Custom AI Development Agency | Codilated"
+        description="Codilated builds AI automation, conversational chatbots, voice agents, and custom AI/SaaS apps that scale operations and deliver up to 10x ROI."
+      />
       {/* ════════ HERO SECTION ════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-gradient noise-overlay">
         {/* Background Decorations */}
@@ -174,7 +175,7 @@ const Home = () => {
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left — Text Content */}
+            {/* Left, Text Content */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
@@ -200,7 +201,7 @@ const Home = () => {
                 variants={itemVariants}
                 className="text-lg sm:text-xl text-white/50 max-w-lg mb-10 leading-relaxed"
               >
-                From intelligent process automation to conversational AI agents —
+                From intelligent process automation to conversational AI agents 
                 we express ideas through code that transforms how businesses operate.
               </motion.p>
 
@@ -237,7 +238,7 @@ const Home = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right — Hero Visual */}
+            {/* Right, Hero Visual */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, x: 40 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -311,13 +312,13 @@ const Home = () => {
                     </div>
                     <div className="mt-4 pt-4 border-t border-white/5">
                       <span className="text-green-400/50">
-                        {"// "}✓ 3 automations deployed — saving 42hrs/week
+                        {"// "}✓ 3 automations deployed, saving 42hrs/week
                       </span>
                     </div>
                   </div>
                 </div>
 
-                {/* Floating badge — top right */}
+                {/* Floating badge, top right */}
                 <motion.div
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 3, repeat: Infinity }}
@@ -332,7 +333,7 @@ const Home = () => {
                   </div>
                 </motion.div>
 
-                {/* Floating badge — bottom left */}
+                {/* Floating badge, bottom left */}
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 1 }}
@@ -355,26 +356,6 @@ const Home = () => {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy to-transparent" />
       </section>
 
-      {/* ════════ TRUSTED BY ════════ */}
-      <section className="relative py-16 bg-navy border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <p className="text-center text-sm text-white/30 font-medium tracking-widest uppercase mb-8">
-              Trusted by innovative companies worldwide
-            </p>
-          </AnimatedSection>
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            {trustedLogos.map((name, i) => (
-              <AnimatedSection key={name} delay={i * 0.05}>
-                <div className="text-xl font-bold text-white/10 hover:text-white/20 transition-colors duration-300 tracking-wider">
-                  {name}
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ════════ SERVICES GRID ════════ */}
       <section className="relative py-24 lg:py-32 bg-navy overflow-hidden">
         {/* Background */}
@@ -388,7 +369,7 @@ const Home = () => {
               <span className="gradient-text">Transform</span> Your Business
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto text-lg">
-              We deliver end-to-end AI services — from automating your workflows
+              We deliver end-to-end AI services, from automating your workflows
               to building intelligent products that give you a competitive edge.
             </p>
           </AnimatedSection>
@@ -447,7 +428,7 @@ const Home = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left — Feature List */}
+            {/* Left, Feature List */}
             <AnimatedSection direction="left">
               <span className="section-tag">Flagship Service</span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6">
@@ -456,8 +437,8 @@ const Home = () => {
               </h2>
               <p className="text-white/50 text-lg mb-10 leading-relaxed">
                 Our flagship AI automation service handles your most time-consuming
-                tasks — lead generation, email outreach, data processing, and HR
-                screening — so your team can focus on what matters.
+                tasks, lead generation, email outreach, data processing, and HR
+                screening, so your team can focus on what matters.
               </p>
 
               <div className="space-y-5">
@@ -496,7 +477,7 @@ const Home = () => {
               </div>
             </AnimatedSection>
 
-            {/* Right — Visual Card */}
+            {/* Right, Visual Card */}
             <AnimatedSection direction="right">
               <div className="relative">
                 <div className="glass-card p-8 space-y-6">
@@ -657,7 +638,7 @@ const Home = () => {
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
               Whether you need AI automation, conversational agents, or a custom
-              AI-powered platform — we're ready to bring your vision to life.
+              AI-powered platform, we're ready to bring your vision to life.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact" className="btn-coral inline-flex items-center gap-2 text-lg px-10 py-4">

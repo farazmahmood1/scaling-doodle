@@ -19,6 +19,9 @@ import {
 } from "lucide-react";
 import AnimatedSection from "../../components/ui/AnimatedSection";
 import PageHero from "../../components/ui/PageHero";
+import Seo from "../../components/ui/Seo";
+import JsonLd from "../../components/ui/JsonLd";
+import { serviceSchema } from "../../seo/schemas";
 
 const containerVariants = {
   hidden: {},
@@ -39,13 +42,13 @@ const capabilities = [
     icon: Brain,
     title: "Predictive Analytics",
     description:
-      "Machine learning models that forecast trends, customer behavior, churn risk, and revenue — so you can act before it happens.",
+      "Machine learning models that forecast trends, customer behavior, churn risk, and revenue, so you can act before it happens.",
   },
   {
     icon: PieChart,
     title: "Business Intelligence Dashboards",
     description:
-      "Real-time, interactive dashboards that surface the KPIs that matter — with AI-generated insights and anomaly detection.",
+      "Real-time, interactive dashboards that surface the KPIs that matter, with AI-generated insights and anomaly detection.",
   },
   {
     icon: Database,
@@ -69,7 +72,7 @@ const capabilities = [
     icon: FileBarChart,
     title: "Automated Reporting",
     description:
-      "AI-generated reports with natural language summaries — delivered on schedule with actionable recommendations.",
+      "AI-generated reports with natural language summaries, delivered on schedule with actionable recommendations.",
   },
 ];
 
@@ -97,6 +100,19 @@ const AIDataAnalytics = () => {
       transition={{ duration: 0.4 }}
     >
       {/* ════════ HERO ════════ */}
+      <Seo
+        title="AI Data Analytics & Predictive Insights | Codilated"
+        description="Transform raw data into predictive business intelligence with AI dashboards, forecasting models, and decision-ready insights from Codilated."
+      />
+      <JsonLd
+        data={serviceSchema({
+          name: "AI Data & Predictive Analytics",
+          description:
+            "Predictive analytics, BI dashboards, anomaly detection, and customer segmentation powered by AI to drive faster, smarter decisions.",
+          slug: "/services/ai-data-analytics",
+          serviceType: "Predictive Analytics & Data Science",
+        })}
+      />
       <PageHero
         tag="Data & Analytics"
         title="AI Data & Predictive Analytics"
@@ -264,7 +280,7 @@ const AIDataAnalytics = () => {
               </h2>
               <p className="text-white/50 text-lg mb-8 leading-relaxed">
                 Our predictive models analyze historical patterns and real-time
-                signals to forecast what's coming — so you can make decisions
+                signals to forecast what's coming, so you can make decisions
                 with confidence, not guesswork.
               </p>
 
@@ -312,13 +328,13 @@ const AIDataAnalytics = () => {
                 <span className="gradient-text">Actionable Insights</span>
               </h2>
               <p className="text-white/50 text-lg mb-8 leading-relaxed">
-                We build the entire data pipeline — from ingestion and cleaning to
+                We build the entire data pipeline, from ingestion and cleaning to
                 model training and dashboard delivery. No data silo left behind.
               </p>
 
               <div className="space-y-6">
                 {[
-                  { icon: Database, title: "Data Ingestion", desc: "Connect to any data source — APIs, databases, spreadsheets, IoT sensors, and more." },
+                  { icon: Database, title: "Data Ingestion", desc: "Connect to any data source, APIs, databases, spreadsheets, IoT sensors, and more." },
                   { icon: Activity, title: "Real-Time Processing", desc: "Stream processing pipelines that transform data as it flows, enabling instant insights." },
                   { icon: Brain, title: "ML Model Training", desc: "Custom models trained on your data, continuously improved with automated retraining." },
                   { icon: Lightbulb, title: "Insight Delivery", desc: "AI-generated summaries, alerts, and recommendations delivered where your team works." },
