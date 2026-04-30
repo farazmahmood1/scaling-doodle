@@ -11,6 +11,7 @@ import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import WhatsAppButton from "./components/ui/WhatsAppButton";
+import Preloader from "./components/ui/Preloader";
 import Seo from "./components/ui/Seo";
 import JsonLd from "./components/ui/JsonLd";
 import { organizationSchema, websiteSchema } from "./seo/schemas";
@@ -100,6 +101,7 @@ function NotFound() {
 export default function App() {
   return (
     <Router>
+      <Preloader />
       <ScrollToTop />
       <JsonLd data={organizationSchema()} />
       <JsonLd data={websiteSchema()} />
