@@ -1,33 +1,136 @@
+# =============================================================================
+# Codilated — production .htaccess for Hostinger / Apache
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 1. Redirects: HTTPS + non-www canonical
+# -----------------------------------------------------------------------------
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Force non-www (www.codilated.com -> codilated.com)
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # -----------------------------------------------------------------------------
+  # 2. SPA routing — send everything else to index.html
+  # -----------------------------------------------------------------------------
   RewriteBase /
 
-  # If the request is for an existing file or directory, serve it directly
+  # Skip if request is for a real file or directory
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Otherwise, route everything to index.html so React Router handles it
+  # Otherwise, hand off to React Router
   RewriteRule ^ index.html [L]
 </IfModule>
 
+# -----------------------------------------------------------------------------
+# 3. Security headers
+# -----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Force HTTPS for 2 years on all subdomains (enable preload only after submission)
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+
+  # Block MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Disallow framing (clickjacking protection)
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Send minimal referrer info to other origins
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Lock down browser feature access
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+  # Cross-origin isolation for static assets
+  <FilesMatch "\.(woff2?|ttf|eot|otf)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+
+  # index.html must always be revalidated so users get new builds
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # Hashed CRA assets are immutable for 1 year
+  <FilesMatch "\.(js|css|woff2?|ttf|eot|otf|png|jpe?g|gif|svg|webp|avif|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# 4. MIME types
+# -----------------------------------------------------------------------------
 <IfModule mod_mime.c>
-  AddType application/javascript .js
-  AddType text/css .css
-  AddType image/svg+xml .svg
+  AddType application/javascript          .js .mjs
+  AddType text/css                         .css
+  AddType image/svg+xml                    .svg
+  AddType image/webp                       .webp
+  AddType image/avif                       .avif
+  AddType font/woff2                       .woff2
+  AddType font/woff                        .woff
+  AddType font/ttf                         .ttf
+  AddType application/manifest+json        .webmanifest
+  AddType application/x-web-app-manifest+json .webapp
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# 5. Compression — Brotli (preferred) with gzip fallback
+# -----------------------------------------------------------------------------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml font/woff2
 </IfModule>
 
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml font/woff2
 </IfModule>
 
+# -----------------------------------------------------------------------------
+# 6. Cache expiration (fallback if mod_headers is unavailable)
+# -----------------------------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType text/css "access plus 1 year"
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/x-icon "access plus 1 year"
-  ExpiresByType text/html "access plus 0 seconds"
+
+  # HTML — never cache (so deploys take effect)
+  ExpiresByType text/html                  "access plus 0 seconds"
+  ExpiresByType application/xml            "access plus 1 hour"
+  ExpiresByType application/json           "access plus 0 seconds"
+
+  # Assets — 1 year (CRA fingerprints filenames)
+  ExpiresByType text/css                   "access plus 1 year"
+  ExpiresByType application/javascript     "access plus 1 year"
+  ExpiresByType image/png                  "access plus 1 year"
+  ExpiresByType image/jpeg                 "access plus 1 year"
+  ExpiresByType image/gif                  "access plus 1 year"
+  ExpiresByType image/webp                 "access plus 1 year"
+  ExpiresByType image/avif                 "access plus 1 year"
+  ExpiresByType image/svg+xml              "access plus 1 year"
+  ExpiresByType image/x-icon               "access plus 1 year"
+  ExpiresByType font/woff2                 "access plus 1 year"
+  ExpiresByType font/woff                  "access plus 1 year"
+  ExpiresByType font/ttf                   "access plus 1 year"
 </IfModule>
+
+# -----------------------------------------------------------------------------
+# 7. Misc hardening
+# -----------------------------------------------------------------------------
+
+# Disable directory listing
+Options -Indexes
+
+# Block access to sensitive files
+<FilesMatch "(^\.|composer\.(json|lock)|package(-lock)?\.json|yarn\.lock|\.env.*|\.git.*|\.htaccess|\.htpasswd)$">
+  Require all denied
+</FilesMatch>
+
+# Pretty 404 — let React Router show the in-app NotFound page
+ErrorDocument 404 /index.html
