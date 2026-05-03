@@ -80,10 +80,10 @@ const values = [
 
 const team = [
   {
-    name: "Hashim Ahmed",
-    role: "Founder & CEO",
+    name: "Joseph Lee",
+    role: "AI Architect",
     bio: "AI strategist with 10+ years building intelligent systems for enterprise clients worldwide.",
-    image: "HA",
+    image: "JA",
   },
   {
     name: "Sarah Khan",
@@ -92,16 +92,16 @@ const team = [
     image: "SK",
   },
   {
-    name: "Omar Malik",
+    name: "Fentola James",
     role: "Lead Full-Stack Developer",
     bio: "Architect behind our SaaS platform. Obsessed with performance, scalability, and developer experience.",
-    image: "OM",
+    image: "FJ",
   },
   {
-    name: "Aisha Farooq",
+    name: "Victoria Zoe",
     role: "AI Solutions Architect",
     bio: "Bridges the gap between business needs and AI capabilities. Expert in automation design and process optimization.",
-    image: "AF",
+    image: "VZ",
   },
 ];
 
