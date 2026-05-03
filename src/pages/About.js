@@ -99,7 +99,7 @@ const team = [
   },
   {
     name: "Victoria Zoe",
-    role: "AI Solutions Architect",
+    role: "Business Developer",
     bio: "Bridges the gap between business needs and AI capabilities. Expert in automation design and process optimization.",
     image: "VZ",
   },
