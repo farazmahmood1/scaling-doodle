@@ -18,6 +18,11 @@ import {
   Award,
   ChevronRight,
   Play,
+  Check,
+  Rocket,
+  Star,
+  Search,
+  BadgeCheck,
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import Seo from "../components/ui/Seo";
@@ -117,6 +122,48 @@ const stats = [
   { value: "98%", label: "Client Satisfaction" },
   { value: "40+", label: "Enterprise Clients" },
   { value: "10x", label: "Average ROI" },
+];
+
+const homePackages = [
+  {
+    name: "LaunchPad AI",
+    tagline: "Build a powerful digital foundation for your business.",
+    price: "$399",
+    icon: Rocket,
+    featured: false,
+    highlights: [
+      "Premium 5-Page Website + Custom UI/UX",
+      "Logo, Brand Kit & Business Email Setup",
+      "Basic SEO + AI-Assisted Copywriting",
+      "1 Month Technical Support",
+    ],
+  },
+  {
+    name: "Growth Presence AI",
+    tagline: "Website + Branding + Marketing system designed for growth.",
+    price: "$899",
+    icon: TrendingUp,
+    featured: true,
+    highlights: [
+      "Everything in LaunchPad AI",
+      "10-Page Site + Conversion Landing Pages",
+      "Meta Ads, Email Marketing & Analytics",
+      "12 Monthly Posts + AI Content Strategy",
+    ],
+  },
+  {
+    name: "AI Automation Suite",
+    tagline: "Complete AI ecosystem with automation & smart systems.",
+    price: "$2,499",
+    icon: Sparkles,
+    featured: false,
+    highlights: [
+      "Everything in Growth Presence AI",
+      "Custom AI Chatbot + Sales Assistant",
+      "CRM, WhatsApp & Email Automation",
+      "Dedicated PM + VIP Priority Support",
+    ],
+  },
 ];
 
 // ─── Component ───────────────────────────────────────────────────────
@@ -587,39 +634,262 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ════════ PROCESS SECTION ════════ */}
+      {/* ════════ PACKAGES SECTION ════════ */}
       <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-coral/4 rounded-full blur-[180px]" />
+        </div>
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-16">
-            <span className="section-tag">Our Process</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6">
-              From Idea to <span className="gradient-text">AI-Powered</span>{" "}
-              Reality
+            <span className="section-tag">Packages & Pricing</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6 text-balance">
+              Plans Built to{" "}
+              <span className="gradient-text">Scale With You</span>
             </h2>
+            <p className="text-white/50 max-w-2xl mx-auto text-lg">
+              From a polished launch to a fully automated AI ecosystem, pick
+              the package that fits where your business is today.
+            </p>
           </AnimatedSection>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { step: "01", title: "Discovery", desc: "We analyze your workflows to find the highest-impact automation opportunities." },
-              { step: "02", title: "Design", desc: "Our AI architects design a custom solution tailored to your specific needs." },
-              { step: "03", title: "Develop", desc: "We build, train, and test your AI system with rigorous quality assurance." },
-              { step: "04", title: "Deploy", desc: "Launch to production with monitoring, support, and continuous optimization." },
-            ].map((item, i) => (
-              <AnimatedSection key={item.step} delay={i * 0.1}>
-                <div className="glass-card p-8 text-center group hover:border-coral/20 transition-all duration-300 h-full">
-                  <div className="text-5xl font-black text-coral/10 group-hover:text-coral/20 transition-colors duration-300 mb-4">
-                    {item.step}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-stretch"
+          >
+            {homePackages.map((pkg) => {
+              const Icon = pkg.icon;
+              return (
+                <motion.div
+                  key={pkg.name}
+                  variants={itemVariants}
+                  className={`relative flex flex-col rounded-2xl p-8 transition-all duration-500 ${
+                    pkg.featured
+                      ? "bg-gradient-to-b from-coral/10 to-navy-light border-2 border-coral/40 shadow-2xl shadow-coral/10 lg:-translate-y-4"
+                      : "glass-card hover:border-coral/20 hover:-translate-y-1"
+                  }`}
+                >
+                  {pkg.featured && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                      <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-coral-gradient text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg shadow-coral/30">
+                        <Star className="w-3 h-3 fill-white" />
+                        Most Popular
+                      </span>
+                    </div>
+                  )}
+
+                  <div
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${
+                      pkg.featured
+                        ? "bg-coral text-white"
+                        : "bg-coral/10 text-coral"
+                    }`}
+                  >
+                    <Icon className="w-7 h-7" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3">
-                    {item.title}
+
+                  <h3 className="text-xl font-black text-white mb-2">
+                    {pkg.name}
                   </h3>
-                  <p className="text-white/40 text-sm leading-relaxed">
-                    {item.desc}
+                  <p className="text-sm text-white/50 leading-relaxed mb-6">
+                    {pkg.tagline}
                   </p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+
+                  <div className="mb-6 pb-6 border-b border-white/10">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-black text-white">
+                        {pkg.price}
+                      </span>
+                      <span className="text-xs text-white/40">one-time</span>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {pkg.highlights.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-sm text-white/60"
+                      >
+                        <Check className="w-4 h-4 text-coral flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    to="/packages"
+                    className={`flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 ${
+                      pkg.featured
+                        ? "bg-coral-gradient text-white hover:-translate-y-0.5 shadow-lg shadow-coral/30"
+                        : "bg-white/5 border border-white/10 text-white hover:bg-coral/10 hover:border-coral/30 hover:text-coral"
+                    }`}
+                  >
+                    View Full Details
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          <AnimatedSection className="text-center mt-12">
+            <Link
+              to="/packages"
+              className="inline-flex items-center gap-2 text-coral font-semibold text-sm hover:gap-3 transition-all duration-300"
+            >
+              Compare all packages
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ════════ LADDER / HOW WE WORK ════════ */}
+      <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-coral/4 rounded-full blur-[180px]" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="mb-16 max-w-2xl">
+            <span className="section-tag">How We Work Together</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6 text-balance">
+              A ladder, not a{" "}
+              <span className="gradient-text">leap.</span>
+            </h2>
+            <p className="text-white/50 text-lg leading-relaxed">
+              We understand your business before recommending a single tool.
+              Here's the path.
+            </p>
+          </AnimatedSection>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-stretch"
+          >
+            {[
+              {
+                step: "01",
+                icon: Play,
+                title: "AI Intro Call",
+                price: "Free",
+                desc: "Learn the same framework we use to restructure operations. Walk away knowing your single most important first move.",
+                meta: "90 min · Live · Monthly",
+                forWho: "Executives exploring where AI fits in their business",
+                cta: "Reserve Your Spot",
+                featured: false,
+              },
+              {
+                step: "02",
+                icon: Search,
+                title: "The AI Audit",
+                price: "$3,000",
+                desc: "We map your operation and find exactly where AI saves you the most time and money. You get a prioritised roadmap, not software recommendations.",
+                meta: "14 days · Fixed price · No maybes",
+                forWho: "Leaders with a mandate who need a clear plan to take to their board",
+                cta: "Learn About the Audit",
+                featured: true,
+              },
+              {
+                step: "03",
+                icon: BadgeCheck,
+                title: "AI Build",
+                price: "$15K–$75K",
+                desc: "The 2 to 3 automations that pay for themselves fastest, built and deployed into your systems. Production-ready, not a proof of concept.",
+                meta: "Custom scope · In production",
+                forWho: "Companies with a roadmap who need it built and shipped",
+                cta: "Scope Your Build",
+                featured: false,
+              },
+            ].map((tier) => {
+              const Icon = tier.icon;
+              return (
+                <motion.div
+                  key={tier.step}
+                  variants={itemVariants}
+                  className={`relative flex flex-col rounded-2xl p-8 transition-all duration-500 ${
+                    tier.featured
+                      ? "bg-gradient-to-b from-coral/10 to-navy-light border-2 border-coral/40 shadow-2xl shadow-coral/10"
+                      : "glass-card hover:border-coral/20 hover:-translate-y-1"
+                  }`}
+                >
+                  {tier.featured && (
+                    <div className="absolute -top-4 left-8">
+                      <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-coral-gradient text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg shadow-coral/30">
+                        <Star className="w-3 h-3 fill-white" />
+                        Most Popular
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Top row: icon + price */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                        tier.featured
+                          ? "bg-coral text-white"
+                          : "bg-coral/10 text-coral"
+                      }`}
+                    >
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className="text-coral font-bold text-base">
+                      {tier.price}
+                    </span>
+                  </div>
+
+                  {/* Step number */}
+                  <div className="text-xs font-mono text-white/30 mb-2">
+                    {tier.step}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-black text-white mb-4">
+                    {tier.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-white/50 leading-relaxed mb-6">
+                    {tier.desc}
+                  </p>
+
+                  {/* Meta line */}
+                  <p className="text-sm font-semibold text-white/80 mb-6">
+                    {tier.meta}
+                  </p>
+
+                  {/* Who it's for */}
+                  <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-6 flex-1">
+                    <p className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider mb-2">
+                      Who It's For
+                    </p>
+                    <p className="text-sm text-white/70 leading-relaxed">
+                      {tier.forWho}
+                    </p>
+                  </div>
+
+                  {/* CTA */}
+                  <Link
+                    to="/contact"
+                    className={`flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl font-bold text-sm transition-all duration-300 ${
+                      tier.featured
+                        ? "bg-coral-gradient text-white hover:-translate-y-0.5 shadow-lg shadow-coral/30"
+                        : "bg-white/5 border border-white/10 text-white hover:bg-coral/10 hover:border-coral/30 hover:text-coral"
+                    }`}
+                  >
+                    {tier.cta}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
 

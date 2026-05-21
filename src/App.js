@@ -22,6 +22,7 @@ import About   from "./pages/About";
 import Blog       from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import Contact    from "./pages/Contact";
+import Packages   from "./pages/Packages";
 
 // Service Pages
 import AIAutomation       from "./pages/services/AIAutomation";
@@ -51,6 +52,7 @@ function AnimatedRoutes() {
         <Route path="/blog"       element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/contact"    element={<Contact />} />
+        <Route path="/packages"   element={<Packages />} />
 
         {/* Service Pages */}
         <Route
