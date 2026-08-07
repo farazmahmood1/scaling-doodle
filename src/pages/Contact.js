@@ -19,6 +19,7 @@ import AnimatedSection from "../components/ui/AnimatedSection";
 import Seo from "../components/ui/Seo";
 import JsonLd from "../components/ui/JsonLd";
 import { faqSchema } from "../seo/schemas";
+import { serviceGroups, SERVICE_LABELS } from "../data/services";
 
 // ─── Animation Variants ─────────────────────────────────────────────
 const containerVariants = {
@@ -71,29 +72,39 @@ const contactInfo = [
 
 const faqs = [
   {
+    question: "What services do you actually offer?",
+    answer:
+      "Ten connected service lines: AI automation, conversational AI and voice agents, custom AI and SaaS development, AI data analytics, full-stack web and app development, Shopify and e-commerce, WordPress and WooCommerce, social media marketing, digital marketing and SEO, and branding and creative design. Most clients start with one and add others as they grow.",
+  },
+  {
     question: "What types of businesses do you work with?",
     answer:
-      "We work with startups, SMBs, and enterprise companies across industries including fintech, healthcare, e-commerce, SaaS, and more. If your business can benefit from AI automation, we can help.",
+      "Startups, SMBs and enterprise teams across e-commerce and retail, professional services, healthcare, real estate, hospitality, education, SaaS and agencies. If you sell something online or want to, we've almost certainly shipped in a similar context.",
   },
   {
-    question: "How long does a typical AI project take?",
+    question: "Can we hire you for just one thing?",
     answer:
-      "Most projects range from 4–12 weeks depending on complexity. Simple automations can be deployed in as little as 2 weeks, while full AI platforms may take 3–4 months.",
+      "Yes. Plenty of clients bring us in only for a Shopify build, a rebrand, an SEO programme or a single AI agent. There's no requirement to buy the whole stack. We'll tell you honestly if something else is a bigger constraint on your growth, then leave the decision to you.",
   },
   {
-    question: "Do you offer ongoing support after deployment?",
+    question: "How long does a typical project take?",
     answer:
-      "Yes. Every project includes post-launch support. We also offer dedicated maintenance plans with monitoring, optimization, and priority updates.",
+      "A brand identity takes 2 to 4 weeks. A marketing site or WordPress build is 4 to 6 weeks. Shopify stores and web apps run 6 to 16 weeks depending on integrations. Simple AI automations deploy in about 2 weeks, larger AI platforms in 3 to 4 months. Marketing retainers are ongoing, with a 3-month initial commitment.",
   },
   {
     question: "What is your pricing model?",
     answer:
-      "We offer project-based pricing and monthly retainers depending on the scope. Every engagement starts with a free discovery call where we scope the project and provide a transparent quote.",
+      "Fixed-price for defined build projects, monthly retainers for marketing, social and maintenance. Our packages start at $399 for a launch website and brand kit and go up to $2,499 for the full AI automation suite. Custom scopes are quoted after a free discovery call, always in writing before any work starts.",
   },
   {
-    question: "Can you integrate AI into our existing systems?",
+    question: "Do you offer ongoing support after launch?",
     answer:
-      "Absolutely. We specialize in integrating AI capabilities into existing tech stacks, CRMs, ERPs, marketing tools, and custom platforms, with minimal disruption.",
+      "Yes. Every build includes a post-launch support window. After that most clients move to a care plan or retainer covering updates, hosting, monitoring, new pages and campaigns, and priority fixes during peak trading periods.",
+  },
+  {
+    question: "Can you work with our existing site, store or team?",
+    answer:
+      "Almost always. We take over inherited codebases, existing Shopify and WordPress installs and running ad accounts regularly. We start with an audit so nobody is guessing, and we're comfortable slotting in alongside an in-house team as long as ownership of each metric is clear.",
   },
 ];
 
@@ -146,19 +157,14 @@ const EMAILJS_SERVICE_ID = "service_tszw8fnå";
 const EMAILJS_TEMPLATE_ID = "template_wxhypsd";
 const EMAILJS_PUBLIC_KEY = "XCP4G2fWIRPUWixZ1";
 
-const SERVICE_LABELS = {
-  "ai-automation": "AI Automation & Process Optimization",
-  "conversational-ai": "Conversational AI & Voice Agents",
-  "custom-ai-development": "Custom AI Web & SaaS Development",
-  "ai-data-analytics": "AI Data & Predictive Analytics",
-  other: "Other / Not Sure",
-};
-
 const BUDGET_LABELS = {
+  "under-1k": "Under $1,000",
+  "1k-5k": "$1,000 – $5,000",
   "5k-10k": "$5,000 – $10,000",
   "10k-25k": "$10,000 – $25,000",
   "25k-50k": "$25,000 – $50,000",
   "50k+": "$50,000+",
+  "monthly-retainer": "Monthly Retainer",
   "not-sure": "Not Sure Yet",
 };
 
@@ -226,8 +232,8 @@ const Contact = () => {
       transition={{ duration: 0.4 }}
     >
       <Seo
-        title="Contact Codilated, Free AI Strategy Call & Project Quote"
-        description="Schedule a free AI discovery call with Codilated. Get a transparent quote on AI automation, chatbots, custom AI apps, or predictive analytics."
+        title="Contact Codilated, Free Discovery Call & Project Quote"
+        description="Book a free discovery call with Codilated. Get a transparent quote on AI automation, web and Shopify development, WordPress, branding, social media or SEO."
       />
       <JsonLd data={faqSchema(faqs)} />
       {/* ════════ HERO SECTION ════════ */}
@@ -286,7 +292,7 @@ const Contact = () => {
             className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-4 mb-6 text-balance"
           >
             Let's Build Your{" "}
-            <span className="gradient-text">AI Solution</span>
+            <span className="gradient-text">Next Move</span>
           </motion.h1>
 
           <motion.p
@@ -295,8 +301,9 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-white/50 max-w-2xl mx-auto"
           >
-            Have a project in mind? We'd love to hear about it. Drop us a
-            message and let's explore how AI can transform your business.
+            A website, a store, a rebrand, a marketing engine or AI agents,
+            tell us what you're trying to do and we'll come back with a plan,
+            a timeline and a price.
           </motion.p>
         </div>
 
@@ -475,27 +482,23 @@ const Contact = () => {
                             <option value="" className="bg-navy">
                               Select a service
                             </option>
-                            <option value="ai-automation" className="bg-navy">
-                              AI Automation & Process Optimization
-                            </option>
-                            <option
-                              value="conversational-ai"
-                              className="bg-navy"
-                            >
-                              Conversational AI & Voice Agents
-                            </option>
-                            <option
-                              value="custom-ai-development"
-                              className="bg-navy"
-                            >
-                              Custom AI Web & SaaS Development
-                            </option>
-                            <option
-                              value="ai-data-analytics"
-                              className="bg-navy"
-                            >
-                              AI Data & Predictive Analytics
-                            </option>
+                            {serviceGroups.map((group) => (
+                              <optgroup
+                                key={group.title}
+                                label={group.title}
+                                className="bg-navy"
+                              >
+                                {group.items.map((service) => (
+                                  <option
+                                    key={service.formValue}
+                                    value={service.formValue}
+                                    className="bg-navy"
+                                  >
+                                    {service.name}
+                                  </option>
+                                ))}
+                              </optgroup>
+                            ))}
                             <option value="other" className="bg-navy">
                               Other / Not Sure
                             </option>
@@ -519,21 +522,17 @@ const Contact = () => {
                             <option value="" className="bg-navy">
                               Select budget range
                             </option>
-                            <option value="5k-10k" className="bg-navy">
-                              $5,000 – $10,000
-                            </option>
-                            <option value="10k-25k" className="bg-navy">
-                              $10,000 – $25,000
-                            </option>
-                            <option value="25k-50k" className="bg-navy">
-                              $25,000 – $50,000
-                            </option>
-                            <option value="50k+" className="bg-navy">
-                              $50,000+
-                            </option>
-                            <option value="not-sure" className="bg-navy">
-                              Not Sure Yet
-                            </option>
+                            {Object.entries(BUDGET_LABELS).map(
+                              ([value, label]) => (
+                                <option
+                                  key={value}
+                                  value={value}
+                                  className="bg-navy"
+                                >
+                                  {label}
+                                </option>
+                              )
+                            )}
                           </select>
                         </div>
                       </div>
@@ -603,7 +602,7 @@ const Contact = () => {
                       },
                       {
                         step: "04",
-                        text: "Kick off your AI project with our team",
+                        text: "Kick off with a dedicated team and a live preview link",
                       },
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-3">
@@ -648,7 +647,7 @@ const Contact = () => {
                       { value: "150+", label: "Projects Delivered" },
                       { value: "<24h", label: "Response Time" },
                       { value: "98%", label: "Client Satisfaction" },
-                      { value: "40+", label: "Enterprise Clients" },
+                      { value: "10", label: "Service Lines" },
                     ].map((stat) => (
                       <div key={stat.label} className="text-center py-3">
                         <div className="text-xl font-black text-white">
@@ -710,8 +709,8 @@ const Contact = () => {
               <span className="gradient-text">Extraordinary</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
-              Whether you need AI automation, conversational agents, or a custom
-              AI-powered platform, we're ready to bring your vision to life.
+              Whether it's a site, a store, a brand, a campaign or a team of AI
+              agents, we're ready to bring your vision to life.
             </p>
             <a
               href="mailto:info@codilated.com"

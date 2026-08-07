@@ -12,27 +12,30 @@ import {
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import Seo from "../components/ui/Seo";
+import { allServices } from "../data/services";
 
 const packages = [
   {
     id: "launchpad",
-    name: "LaunchPad AI",
-    tagline: "Build a powerful digital foundation for your business.",
+    name: "LaunchPad",
+    tagline: "A complete, professional digital foundation for your business.",
     price: "$399",
     icon: Rocket,
     color: "sky",
     featured: false,
-    cta: "Get LaunchPad AI",
+    cta: "Get LaunchPad",
+    bestFor: "New businesses and anyone still trading on a template site.",
     groups: [
       {
         title: "Website Development",
         items: [
           "Premium Business Website (Up to 5 Pages)",
           "Custom UI/UX Design",
+          "Built on React, WordPress or Shopify, your choice",
           "Mobile Responsive Development",
-          "Speed Optimized Website",
+          "Speed & Core Web Vitals Optimization",
           "Contact Forms + WhatsApp Integration",
-          "Basic SEO Setup",
+          "Basic SEO Setup & Sitemap Submission",
           "AI-Assisted Website Copywriting",
         ],
       },
@@ -41,54 +44,63 @@ const packages = [
         items: [
           "Custom Logo Design",
           "Brand Color Palette & Typography",
-          "Social Media Profile Setup",
+          "Social Media Profile Setup & Cover Art",
           "Professional Business Email Setup",
-          "Google Business/Profile Setup",
+          "Google Business Profile Setup",
         ],
       },
       {
         title: "Support",
-        items: ["1 Month Technical Support"],
+        items: ["1 Month Technical Support", "Recorded Handover Walkthrough"],
       },
     ],
     bonus: ["Social Media Post Templates", "Website Banner Designs"],
   },
   {
     id: "growth",
-    name: "Growth Presence AI",
+    name: "Growth Presence",
     tagline:
-      "Website + Branding + Marketing system designed for business growth.",
+      "Website, store, branding and a marketing system engineered for growth.",
     price: "$899",
     icon: TrendingUp,
     color: "coral",
     featured: true,
-    cta: "Get Growth Presence AI",
-    inherits: "Everything in LaunchPad AI, plus:",
+    cta: "Get Growth Presence",
+    bestFor:
+      "Businesses with a product that works, ready to put real demand behind it.",
+    inherits: "Everything in LaunchPad, plus:",
     groups: [
       {
-        title: "Advanced Website Features",
+        title: "Advanced Website & Store",
         items: [
           "Premium Website (Up to 10 Pages)",
+          "Shopify or WooCommerce Store Setup",
           "Conversion-Focused Landing Pages",
           "Advanced Animations & Modern Effects",
-          "Blog Integration",
-          "Lead Capture Forms",
-          "Analytics Dashboard Integration",
+          "Blog & Content Hub Integration",
+          "Lead Capture Forms & Analytics Dashboard",
         ],
       },
       {
-        title: "Digital Presence & Marketing",
+        title: "Social Media Management",
         items: [
           "Facebook & Instagram Management",
-          "Meta Ads Setup & Management",
           "12 Professional Monthly Posts",
-          "AI-Powered Content Strategy",
-          "Meta Pixel + Google Analytics Setup",
+          "Short-Form Video & Reels Strategy",
+          "Community Management (Comments & DMs)",
+          "Content Calendar Planning",
+        ],
+      },
+      {
+        title: "Marketing & SEO",
+        items: [
+          "Meta Ads Setup & Management",
+          "On-Page SEO & Keyword Mapping",
+          "Meta Pixel + GA4 Analytics Setup",
           "Retargeting Ads Setup",
-          "Email Marketing Setup",
+          "Email Marketing Setup & Flows",
+          "AI-Based Audience & Competitor Research",
           "Monthly Performance Reports",
-          "AI-Based Audience Research",
-          "Competitor Analysis",
         ],
       },
       {
@@ -96,13 +108,13 @@ const packages = [
         items: [
           "AI Customer Chat Integration",
           "Lead Generation Funnel Setup",
-          "Short Form Content Strategy",
+          "Abandoned Cart / Follow-Up Sequences",
         ],
       },
     ],
     bonus: [
       "3 AI Ad Creatives Monthly",
-      "Content Calendar Planning",
+      "Quarterly Strategy Review",
       "Priority Support",
     ],
   },
@@ -110,18 +122,20 @@ const packages = [
     id: "automation",
     name: "AI Automation Suite",
     tagline:
-      "Complete AI-powered business ecosystem with automation & smart systems.",
+      "The complete ecosystem, with AI agents running the repetitive work.",
     price: "$2,499",
     icon: Sparkles,
     color: "violet",
     featured: false,
     cta: "Get AI Automation Suite",
-    inherits: "Everything in Growth Presence AI, plus:",
+    bestFor:
+      "Established teams whose growth is capped by manual follow-up and admin.",
+    inherits: "Everything in Growth Presence, plus:",
     groups: [
       {
         title: "Premium Website & Systems",
         items: [
-          "Custom Advanced Website",
+          "Custom Advanced Website or Web App",
           "Dynamic & Interactive UI/UX",
           "Custom Dashboard Integration",
           "Advanced Conversion Optimization",
@@ -192,8 +206,8 @@ const Packages = () => {
       transition={{ duration: 0.4 }}
     >
       <Seo
-        title="AI Packages & Pricing | Codilated"
-        description="Choose from LaunchPad AI, Growth Presence AI, or our complete AI Automation Suite. Transparent pricing for websites, branding, marketing, and AI automation."
+        title="Packages & Pricing, Web, Branding, Marketing & AI | Codilated"
+        description="Transparent packages from $399. Websites, Shopify and WordPress stores, branding, social media, SEO and AI automation, or any single service on its own."
       />
 
       {/* ════════ HERO ════════ */}
@@ -214,9 +228,9 @@ const Packages = () => {
               <span className="gradient-text">Scale With You</span>
             </h1>
             <p className="text-lg sm:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed">
-              From a polished launch to a fully automated AI ecosystem, pick the
-              package that fits where your business is today and where it's
-              going next.
+              Website, store, branding, social media and marketing bundled into
+              one plan, with AI automation layered on when you're ready. Pick the
+              package that fits where your business is today.
             </p>
           </AnimatedSection>
         </div>
@@ -271,9 +285,17 @@ const Packages = () => {
                     <h2 className="text-2xl font-black text-white mb-2">
                       {pkg.name}
                     </h2>
-                    <p className="text-sm text-white/50 leading-relaxed">
+                    <p className="text-sm text-white/50 leading-relaxed mb-4">
                       {pkg.tagline}
                     </p>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3.5">
+                      <p className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider mb-1.5">
+                        Best For
+                      </p>
+                      <p className="text-xs text-white/70 leading-relaxed">
+                        {pkg.bestFor}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Price */}
@@ -354,6 +376,81 @@ const Packages = () => {
               );
             })}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ════════ STANDALONE SERVICES ════════ */}
+      <section className="relative py-20 lg:py-28 bg-navy-mid overflow-hidden border-y border-white/5">
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-sky/4 rounded-full blur-[150px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-12 max-w-2xl mx-auto">
+            <span className="section-tag">Prefer to Buy One Thing?</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-4 mb-5 text-balance">
+              Every Service Is Available{" "}
+              <span className="gradient-text">On Its Own</span>
+            </h2>
+            <p className="text-white/50 leading-relaxed">
+              Packages are the efficient route, but you're never obliged to take
+              one. Pick a single service and we'll quote it on its own scope.
+            </p>
+          </AnimatedSection>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            {allServices.map((service) => {
+              const Icon = service.icon;
+              return (
+                <motion.div key={service.href} variants={itemVariants}>
+                  <Link
+                    to={service.href}
+                    className="flex items-center gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-coral/25 hover:bg-white/[0.05] transition-all duration-300 group h-full"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-coral/10 flex items-center justify-center flex-shrink-0 group-hover:bg-coral/20 transition-colors duration-300">
+                      <Icon className="w-5 h-5 text-coral" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-semibold text-white group-hover:text-coral transition-colors duration-300">
+                        {service.shortName}
+                      </div>
+                      <div className="text-[11px] text-white/35 mt-0.5">
+                        Custom quote
+                      </div>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-coral group-hover:translate-x-0.5 transition-all duration-300 flex-shrink-0" />
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          <AnimatedSection className="mt-10">
+            <div className="glass-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+              <div>
+                <h3 className="text-lg font-bold text-white mb-2">
+                  Ongoing retainers & care plans
+                </h3>
+                <p className="text-sm text-white/50 leading-relaxed max-w-2xl">
+                  Social media management, SEO and paid media, WordPress and
+                  Shopify care plans, and AI automation monitoring all run as
+                  monthly retainers. Three-month initial term, month to month
+                  after that, and you keep every account in your own name.
+                </p>
+              </div>
+              <Link
+                to="/contact"
+                className="btn-outline inline-flex items-center gap-2 text-sm whitespace-nowrap flex-shrink-0"
+              >
+                Discuss a Retainer
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

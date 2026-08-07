@@ -2,7 +2,7 @@ import React from "react";
 
 const WHATSAPP_NUMBER = "18052519188";
 const PREFILLED_MESSAGE =
-  "Hi Codilated! I'd like to learn more about your AI services.";
+  "Hi Codilated! I'd like to talk about a project. (Website / store / branding / marketing / AI automation)";
 
 export default function WhatsAppButton() {
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(

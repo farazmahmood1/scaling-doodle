@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Bot,
-  MessageSquare,
-  Code2,
-  BarChart3,
   Zap,
   Shield,
   Clock,
@@ -15,7 +11,6 @@ import {
   CheckCircle2,
   Users,
   Globe,
-  Award,
   ChevronRight,
   Play,
   Check,
@@ -23,9 +18,18 @@ import {
   Star,
   Search,
   BadgeCheck,
+  Layers,
+  ShoppingBag,
+  Stethoscope,
+  Building2,
+  GraduationCap,
+  UtensilsCrossed,
+  Home as HomeIcon,
+  Handshake,
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import Seo from "../components/ui/Seo";
+import { serviceGroups } from "../data/services";
 
 // ─── Animation Variants ─────────────────────────────────────────────
 const containerVariants = {
@@ -45,89 +49,98 @@ const itemVariants = {
 };
 
 // ─── Data ────────────────────────────────────────────────────────────
-const services = [
-  {
-    icon: Bot,
-    title: "AI Automation & Process Optimization",
-    description:
-      "Automate repetitive business processes, lead generation, email marketing, and HR workflows with intelligent AI systems.",
-    href: "/services/ai-automation",
-    tag: "FLAGSHIP",
-    color: "coral",
-  },
-  {
-    icon: MessageSquare,
-    title: "Conversational AI & Voice Agents",
-    description:
-      "Deploy AI chatbots across websites, WhatsApp, and social media, plus voice agents that handle calls autonomously.",
-    href: "/services/conversational-ai",
-    tag: null,
-    color: "sky",
-  },
-  {
-    icon: Code2,
-    title: "Custom AI Web & SaaS Development",
-    description:
-      "Build full-stack AI-powered web applications and SaaS tools with intelligent personalization and recommendations.",
-    href: "/services/custom-ai-development",
-    tag: null,
-    color: "emerald",
-  },
-  {
-    icon: BarChart3,
-    title: "AI Data & Predictive Analytics",
-    description:
-      "Transform raw data into predictive business insights that drive smarter, faster decision-making.",
-    href: "/services/ai-data-analytics",
-    tag: null,
-    color: "violet",
-  },
-];
-
 const whyChooseUs = [
   {
     icon: Zap,
-    title: "AI-First Approach",
-    description: "Every solution is built with artificial intelligence at its core, not bolted on as an afterthought.",
+    title: "AI-First, Not AI-Bolted-On",
+    description:
+      "Every website, store and campaign we ship is built to plug into automation from day one, so growth doesn't mean more headcount.",
+  },
+  {
+    icon: Layers,
+    title: "One Team, Whole Stack",
+    description:
+      "Brand, design, development, commerce, marketing and AI under one roof. No handoffs between three agencies who blame each other.",
   },
   {
     icon: Shield,
-    title: "Enterprise-Grade Security",
-    description: "Your data is protected with end-to-end encryption, SOC 2 practices, and strict access controls.",
+    title: "You Own Everything",
+    description:
+      "Code, ad accounts, analytics, design source files and domains stay in your name. There's no platform you have to keep paying us for.",
   },
   {
     icon: Clock,
-    title: "Rapid Deployment",
-    description: "Go from concept to production in weeks, not months. We move fast without cutting corners.",
+    title: "Fast, Without the Corners Cut",
+    description:
+      "First deployable release in two weeks on most builds. We work in short sprints with a live preview URL from the very start.",
   },
   {
     icon: TrendingUp,
-    title: "Measurable ROI",
-    description: "Every automation we build is benchmarked against real KPIs, time saved, costs reduced, revenue gained.",
+    title: "Measured on Revenue",
+    description:
+      "We report on leads, orders, conversion rate and hours reclaimed. Impressions and likes are inputs, not the scoreboard.",
   },
   {
     icon: Users,
-    title: "Dedicated AI Team",
-    description: "Work with specialized AI engineers, not generalists. Our team lives and breathes machine learning.",
-  },
-  {
-    icon: Globe,
-    title: "Global Scale",
-    description: "Our AI solutions are designed to scale across regions, languages, and millions of data points.",
+    title: "Specialists, Not Generalists",
+    description:
+      "Your Shopify build is run by people who only do commerce. Your AI agents by ML engineers. Nobody is learning on your budget.",
   },
 ];
 
 const stats = [
-  { value: "150+", label: "AI Projects Delivered" },
+  { value: "150+", label: "Projects Delivered" },
+  { value: "10", label: "Service Lines" },
   { value: "98%", label: "Client Satisfaction" },
-  { value: "40+", label: "Enterprise Clients" },
-  { value: "10x", label: "Average ROI" },
+  { value: "15+", label: "Countries Served" },
+];
+
+const journey = [
+  {
+    step: "01",
+    icon: Sparkles,
+    title: "Brand",
+    desc: "Positioning, identity and messaging that make you the obvious choice.",
+    href: "/services/branding-design",
+  },
+  {
+    step: "02",
+    icon: Layers,
+    title: "Build",
+    desc: "A website, store or app engineered for speed, search and conversion.",
+    href: "/services/web-development",
+  },
+  {
+    step: "03",
+    icon: TrendingUp,
+    title: "Grow",
+    desc: "SEO, paid, social and email that fill the funnel you just built.",
+    href: "/services/digital-marketing",
+  },
+  {
+    step: "04",
+    icon: Zap,
+    title: "Automate",
+    desc: "AI agents that handle the follow-up, support and admin behind it all.",
+    href: "/services/ai-automation",
+  },
+];
+
+const industries = [
+  { icon: ShoppingBag, name: "E-Commerce & Retail" },
+  { icon: Building2, name: "B2B & Professional Services" },
+  { icon: Stethoscope, name: "Healthcare & Clinics" },
+  { icon: HomeIcon, name: "Real Estate & Property" },
+  { icon: UtensilsCrossed, name: "Hospitality & Food" },
+  { icon: GraduationCap, name: "Education & Coaching" },
+  { icon: Globe, name: "SaaS & Technology" },
+  { icon: Handshake, name: "Agencies & Startups" },
 ];
 
 const homePackages = [
   {
-    name: "LaunchPad AI",
-    tagline: "Build a powerful digital foundation for your business.",
+    name: "LaunchPad",
+    tagline: "Website, branding and a professional digital foundation.",
     price: "$399",
     icon: Rocket,
     featured: false,
@@ -139,26 +152,26 @@ const homePackages = [
     ],
   },
   {
-    name: "Growth Presence AI",
-    tagline: "Website + Branding + Marketing system designed for growth.",
+    name: "Growth Presence",
+    tagline: "Website + branding + social and marketing built for growth.",
     price: "$899",
     icon: TrendingUp,
     featured: true,
     highlights: [
-      "Everything in LaunchPad AI",
-      "10-Page Site + Conversion Landing Pages",
-      "Meta Ads, Email Marketing & Analytics",
-      "12 Monthly Posts + AI Content Strategy",
+      "Everything in LaunchPad",
+      "10-Page Site or Shopify/WordPress Store",
+      "Meta Ads, SEO, Email & Analytics",
+      "12 Monthly Posts + Content Strategy",
     ],
   },
   {
     name: "AI Automation Suite",
-    tagline: "Complete AI ecosystem with automation & smart systems.",
+    tagline: "The full ecosystem, with AI running the repetitive work.",
     price: "$2,499",
     icon: Sparkles,
     featured: false,
     highlights: [
-      "Everything in Growth Presence AI",
+      "Everything in Growth Presence",
       "Custom AI Chatbot + Sales Assistant",
       "CRM, WhatsApp & Email Automation",
       "Dedicated PM + VIP Priority Support",
@@ -176,8 +189,8 @@ const Home = () => {
       transition={{ duration: 0.4 }}
     >
       <Seo
-        title="AI Automation & Custom AI Development Agency | Codilated"
-        description="Codilated builds AI automation, conversational chatbots, voice agents, and custom AI/SaaS apps that scale operations and deliver up to 10x ROI."
+        title="AI, Web, E-Commerce & Marketing Agency | Codilated"
+        description="Codilated is an AI-first digital agency building AI automation, websites, Shopify and WordPress stores, branding, social media and marketing that grows revenue."
       />
       {/* ════════ HERO SECTION ════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-gradient noise-overlay">
@@ -231,7 +244,7 @@ const Home = () => {
               <motion.div variants={itemVariants} className="mb-6">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-coral/10 border border-coral/20 rounded-full text-coral text-xs font-mono font-semibold tracking-wider uppercase">
                   <Sparkles className="w-3.5 h-3.5" />
-                  AI-Powered Solutions
+                  AI-First Digital Agency
                 </span>
               </motion.div>
 
@@ -239,17 +252,18 @@ const Home = () => {
                 variants={itemVariants}
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.08] tracking-tight mb-6"
               >
-                We Build{" "}
-                <span className="gradient-text">AI Automations</span>{" "}
-                That Scale Your Business
+                We Build the{" "}
+                <span className="gradient-text">Systems</span>{" "}
+                That Grow Your Business
               </motion.h1>
 
               <motion.p
                 variants={itemVariants}
                 className="text-lg sm:text-xl text-white/50 max-w-lg mb-10 leading-relaxed"
               >
-                From intelligent process automation to conversational AI agents 
-                we express ideas through code that transforms how businesses operate.
+                AI agents and automation, websites and web apps, Shopify and
+                WordPress stores, branding, social media and marketing, delivered
+                by one team that expresses ideas through code.
               </motion.p>
 
               <motion.div
@@ -257,15 +271,15 @@ const Home = () => {
                 className="flex flex-wrap gap-4"
               >
                 <Link to="/contact" className="btn-coral inline-flex items-center gap-2 text-base px-8 py-4">
-                  Start Your AI Project
+                  Start Your Project
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  to="/services/ai-automation"
+                  to="/packages"
                   className="btn-outline inline-flex items-center gap-2 text-base px-8 py-4"
                 >
                   <Play className="w-4 h-4" />
-                  Explore Services
+                  See Packages
                 </Link>
               </motion.div>
 
@@ -301,7 +315,7 @@ const Home = () => {
                     <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
                     <div className="w-3 h-3 rounded-full bg-green-400/60" />
                     <span className="ml-3 text-xs font-mono text-white/30">
-                      ai-automation-engine.js
+                      growth-stack.js
                     </span>
                   </div>
 
@@ -309,49 +323,46 @@ const Home = () => {
                   <div className="font-mono text-sm space-y-2">
                     <div>
                       <span className="text-coral/70">const</span>{" "}
-                      <span className="text-sky">automation</span>{" "}
+                      <span className="text-sky">business</span>{" "}
                       <span className="text-white/40">=</span>{" "}
                       <span className="text-coral/70">await</span>{" "}
                       <span className="text-white/60">codilated</span>
                       <span className="text-coral">.</span>
-                      <span className="text-green-400/70">deploy</span>
+                      <span className="text-green-400/70">build</span>
                       <span className="text-white/40">({"{"}</span>
                     </div>
                     <div className="pl-6">
-                      <span className="text-sky/70">type</span>
+                      <span className="text-sky/70">brand</span>
                       <span className="text-white/40">: </span>
-                      <span className="text-coral-light/80">'lead-gen'</span>
+                      <span className="text-coral-light/80">'identity + messaging'</span>
                       <span className="text-white/40">,</span>
                     </div>
                     <div className="pl-6">
-                      <span className="text-sky/70">ai_model</span>
+                      <span className="text-sky/70">store</span>
                       <span className="text-white/40">: </span>
-                      <span className="text-coral-light/80">'gpt-4-turbo'</span>
+                      <span className="text-coral-light/80">'shopify-plus'</span>
                       <span className="text-white/40">,</span>
                     </div>
                     <div className="pl-6">
-                      <span className="text-sky/70">scale</span>
-                      <span className="text-white/40">: </span>
-                      <span className="text-coral-light/80">'enterprise'</span>
-                      <span className="text-white/40">,</span>
-                    </div>
-                    <div className="pl-6">
-                      <span className="text-sky/70">automations</span>
+                      <span className="text-sky/70">marketing</span>
                       <span className="text-white/40">: [</span>
                     </div>
                     <div className="pl-10">
-                      <span className="text-coral-light/80">'email_outreach'</span>
+                      <span className="text-coral-light/80">'seo'</span>
+                      <span className="text-white/40">,</span>{" "}
+                      <span className="text-coral-light/80">'paid_social'</span>
                       <span className="text-white/40">,</span>
                     </div>
                     <div className="pl-10">
-                      <span className="text-coral-light/80">'lead_scoring'</span>
-                      <span className="text-white/40">,</span>
-                    </div>
-                    <div className="pl-10">
-                      <span className="text-coral-light/80">'crm_sync'</span>
+                      <span className="text-coral-light/80">'lifecycle_email'</span>
                     </div>
                     <div className="pl-6">
-                      <span className="text-white/40">]</span>
+                      <span className="text-white/40">],</span>
+                    </div>
+                    <div className="pl-6">
+                      <span className="text-sky/70">ai_agents</span>
+                      <span className="text-white/40">: </span>
+                      <span className="text-coral-light/80">'always_on'</span>
                     </div>
                     <div>
                       <span className="text-white/40">{"}"})</span>
@@ -359,7 +370,7 @@ const Home = () => {
                     </div>
                     <div className="mt-4 pt-4 border-t border-white/5">
                       <span className="text-green-400/50">
-                        {"// "}✓ 3 automations deployed, saving 42hrs/week
+                        {"// "}✓ launched in 6 weeks, 42hrs/week reclaimed
                       </span>
                     </div>
                   </div>
@@ -412,12 +423,92 @@ const Home = () => {
           <AnimatedSection className="text-center mb-16">
             <span className="section-tag">What We Do</span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6 text-balance">
-              AI Solutions Built to{" "}
-              <span className="gradient-text">Transform</span> Your Business
+              Ten Services.{" "}
+              <span className="gradient-text">One Accountable Team.</span>
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto text-lg">
-              We deliver end-to-end AI services, from automating your workflows
-              to building intelligent products that give you a competitive edge.
+              AI automation is our flagship, but a smart agent is useless bolted
+              to a slow website and a weak brand. So we build all of it.
+            </p>
+          </AnimatedSection>
+
+          {serviceGroups.map((group, gi) => (
+            <div key={group.title} className={gi > 0 ? "mt-16" : ""}>
+              <AnimatedSection className="flex items-center gap-4 mb-8">
+                <h3 className="text-sm font-mono font-bold text-coral uppercase tracking-widest whitespace-nowrap">
+                  {group.title}
+                </h3>
+                <div className="flex-1 h-px bg-white/10" />
+                <span className="text-xs text-white/30 whitespace-nowrap hidden sm:block">
+                  {group.caption}
+                </span>
+              </AnimatedSection>
+
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {group.items.map((service) => {
+                  const Icon = service.icon;
+                  return (
+                    <motion.div key={service.href} variants={itemVariants}>
+                      <Link
+                        to={service.href}
+                        className="block glass-card p-7 group hover:border-coral/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-card-hover h-full"
+                      >
+                        <div className="flex items-start justify-between mb-5">
+                          <div className="w-12 h-12 rounded-2xl bg-coral/10 flex items-center justify-center group-hover:bg-coral/20 transition-colors duration-300">
+                            <Icon className="w-6 h-6 text-coral" />
+                          </div>
+                          {service.tag && (
+                            <span className="px-2.5 py-1 text-[10px] font-bold bg-coral/10 text-coral rounded-lg uppercase tracking-wider border border-coral/20">
+                              {service.tag}
+                            </span>
+                          )}
+                        </div>
+
+                        <h4 className="text-lg font-bold text-white mb-2.5 group-hover:text-coral transition-colors duration-300 leading-snug">
+                          {service.shortName}
+                        </h4>
+
+                        <p className="text-white/40 text-sm leading-relaxed mb-5">
+                          {service.description}
+                        </p>
+
+                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-coral opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                          Learn More
+                          <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ════════ THE JOURNEY / HOW IT FITS TOGETHER ════════ */}
+      <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-sky/5 rounded-full blur-[150px] -translate-y-1/2" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16 max-w-2xl mx-auto">
+            <span className="section-tag">How It Fits Together</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6 text-balance">
+              Brand. Build. Grow.{" "}
+              <span className="gradient-text">Automate.</span>
+            </h2>
+            <p className="text-white/50 text-lg leading-relaxed">
+              Most businesses buy these four things from four different vendors
+              and spend the year translating between them. You can start
+              anywhere in this loop, and we'll pick up from where you are.
             </p>
           </AnimatedSection>
 
@@ -426,38 +517,33 @@ const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid sm:grid-cols-2 gap-6"
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {services.map((service, i) => {
-              const Icon = service.icon;
+            {journey.map((item) => {
+              const Icon = item.icon;
               return (
-                <motion.div key={service.title} variants={itemVariants}>
+                <motion.div key={item.step} variants={itemVariants}>
                   <Link
-                    to={service.href}
-                    className="block glass-card p-8 group hover:border-coral/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-card-hover h-full"
+                    to={item.href}
+                    className="relative flex flex-col h-full glass-card p-8 group hover:border-coral/20 transition-all duration-500 hover:-translate-y-2"
                   >
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="w-14 h-14 rounded-2xl bg-coral/10 flex items-center justify-center group-hover:bg-coral/20 transition-colors duration-300">
-                        <Icon className="w-7 h-7 text-coral" />
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center group-hover:bg-coral/20 transition-colors duration-300">
+                        <Icon className="w-6 h-6 text-coral" />
                       </div>
-                      {service.tag && (
-                        <span className="px-2.5 py-1 text-[10px] font-bold bg-coral/10 text-coral rounded-lg uppercase tracking-wider border border-coral/20">
-                          {service.tag}
-                        </span>
-                      )}
+                      <span className="text-3xl font-black text-coral/10 group-hover:text-coral/20 transition-colors duration-300">
+                        {item.step}
+                      </span>
                     </div>
-
                     <h3 className="text-xl font-bold text-white mb-3 group-hover:text-coral transition-colors duration-300">
-                      {service.title}
+                      {item.title}
                     </h3>
-
-                    <p className="text-white/40 text-sm leading-relaxed mb-6">
-                      {service.description}
+                    <p className="text-white/40 text-sm leading-relaxed flex-1">
+                      {item.desc}
                     </p>
-
-                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-coral opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                      Learn More
-                      <ArrowRight className="w-4 h-4" />
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-coral mt-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Explore
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </Link>
                 </motion.div>
@@ -468,7 +554,7 @@ const Home = () => {
       </section>
 
       {/* ════════ AI AUTOMATION SPOTLIGHT ════════ */}
-      <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-navy overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-coral/5 rounded-full blur-[150px] -translate-y-1/2" />
         </div>
@@ -483,9 +569,10 @@ const Home = () => {
                 <span className="gradient-text">Works 24/7</span>
               </h2>
               <p className="text-white/50 text-lg mb-10 leading-relaxed">
-                Our flagship AI automation service handles your most time-consuming
-                tasks, lead generation, email outreach, data processing, and HR
-                screening, so your team can focus on what matters.
+                This is what makes everything else compound. AI agents handle
+                the follow-up, qualification, support and admin that normally
+                forces you to hire, so the traffic we send you actually gets
+                converted.
               </p>
 
               <div className="space-y-5">
@@ -493,6 +580,7 @@ const Home = () => {
                   "Business process automation with custom AI models",
                   "AI lead generation that fills your pipeline on autopilot",
                   "Smart email marketing with hyper-personalization",
+                  "AI chat and voice agents that answer every enquiry instantly",
                   "AI resume screening that finds top talent in seconds",
                 ].map((item, i) => (
                   <motion.div
@@ -587,7 +675,7 @@ const Home = () => {
       </section>
 
       {/* ════════ WHY CHOOSE US ════════ */}
-      <section className="relative py-24 lg:py-32 bg-navy overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-sky/3 rounded-full blur-[150px] pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -598,8 +686,9 @@ const Home = () => {
               <span className="gradient-text">Built Smarter.</span>
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto text-lg">
-              We don't just build software. We build intelligent systems that
-              learn, adapt, and deliver measurable results.
+              We don't just build software or run campaigns. We build the
+              connected system that turns attention into revenue, then automate
+              the parts that shouldn't need a human.
             </p>
           </AnimatedSection>
 
@@ -610,7 +699,7 @@ const Home = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {whyChooseUs.map((item, i) => {
+            {whyChooseUs.map((item) => {
               const Icon = item.icon;
               return (
                 <motion.div
@@ -634,6 +723,47 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ════════ INDUSTRIES ════════ */}
+      <section className="relative py-20 lg:py-24 bg-navy overflow-hidden border-y border-white/5">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-12 max-w-2xl mx-auto">
+            <span className="section-tag">Who We Work With</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-4 mb-5 text-balance">
+              Industries We Know{" "}
+              <span className="gradient-text">Inside Out</span>
+            </h2>
+            <p className="text-white/50 leading-relaxed">
+              From single-founder startups to multi-location operators, we've
+              shipped in enough verticals to skip the twelve-week learning curve.
+            </p>
+          </AnimatedSection>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+          >
+            {industries.map((industry) => {
+              const Icon = industry.icon;
+              return (
+                <motion.div
+                  key={industry.name}
+                  variants={itemVariants}
+                  className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-coral/20 transition-colors duration-300"
+                >
+                  <Icon className="w-5 h-5 text-coral flex-shrink-0" />
+                  <span className="text-sm text-white/60 leading-snug">
+                    {industry.name}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
       {/* ════════ PACKAGES SECTION ════════ */}
       <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -648,8 +778,8 @@ const Home = () => {
               <span className="gradient-text">Scale With You</span>
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto text-lg">
-              From a polished launch to a fully automated AI ecosystem, pick
-              the package that fits where your business is today.
+              Website, branding, social and marketing bundled into one plan, with
+              AI automation layered on when you're ready for it.
             </p>
           </AnimatedSection>
 
@@ -748,7 +878,7 @@ const Home = () => {
       </section>
 
       {/* ════════ LADDER / HOW WE WORK ════════ */}
-      <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-navy overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-coral/4 rounded-full blur-[180px]" />
         </div>
@@ -777,31 +907,31 @@ const Home = () => {
               {
                 step: "01",
                 icon: Play,
-                title: "AI Intro Call",
+                title: "Discovery Call",
                 price: "Free",
-                desc: "Learn the same framework we use to restructure operations. Walk away knowing your single most important first move.",
-                meta: "90 min · Live · Monthly",
-                forWho: "Executives exploring where AI fits in their business",
-                cta: "Reserve Your Spot",
+                desc: "Thirty minutes on your goals, your bottlenecks and what's already working. You leave knowing your single most important next move, whether or not you hire us.",
+                meta: "30 min · Live · Book any week",
+                forWho: "Owners and executives working out where to invest next",
+                cta: "Book Your Call",
                 featured: false,
               },
               {
                 step: "02",
                 icon: Search,
-                title: "The AI Audit",
+                title: "The Growth Audit",
                 price: "$3,000",
-                desc: "We map your operation and find exactly where AI saves you the most time and money. You get a prioritised roadmap, not software recommendations.",
+                desc: "We map your website, funnel, brand and operations, then show exactly where revenue is leaking and where AI saves the most time. A prioritised roadmap, not a tool list.",
                 meta: "14 days · Fixed price · No maybes",
-                forWho: "Leaders with a mandate who need a clear plan to take to their board",
+                forWho: "Leaders who need a clear plan to take to their board",
                 cta: "Learn About the Audit",
                 featured: true,
               },
               {
                 step: "03",
                 icon: BadgeCheck,
-                title: "AI Build",
+                title: "The Build",
                 price: "$15K–$75K",
-                desc: "The 2 to 3 automations that pay for themselves fastest, built and deployed into your systems. Production-ready, not a proof of concept.",
+                desc: "The two or three projects that pay for themselves fastest, built and shipped into your business. Site, store, brand, campaigns or automation, in production, not in a deck.",
                 meta: "Custom scope · In production",
                 forWho: "Companies with a roadmap who need it built and shipped",
                 cta: "Scope Your Build",
@@ -894,7 +1024,7 @@ const Home = () => {
       </section>
 
       {/* ════════ FINAL CTA ════════ */}
-      <section className="relative py-24 lg:py-32 bg-navy overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-coral/5 rounded-full blur-[200px]" />
         </div>
@@ -907,8 +1037,9 @@ const Home = () => {
               <span className="gradient-text">Extraordinary</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
-              Whether you need AI automation, conversational agents, or a custom
-              AI-powered platform, we're ready to bring your vision to life.
+              A new website, a Shopify store, a rebrand, a marketing engine or a
+              team of AI agents, tell us where you are and we'll tell you what
+              we'd do first.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact" className="btn-coral inline-flex items-center gap-2 text-lg px-10 py-4">

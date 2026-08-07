@@ -1,48 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Bot,
-  MessageSquare,
-  Code2,
-  BarChart3,
-  ArrowRight,
-  Zap,
-} from "lucide-react";
-
-const serviceLinks = [
-  {
-    name: "AI Automation & Process Optimization",
-    href: "/services/ai-automation",
-    icon: Bot,
-    tag: "FLAGSHIP",
-    description: "Automate business processes with intelligent AI systems",
-  },
-  {
-    name: "Conversational AI & Voice Agents",
-    href: "/services/conversational-ai",
-    icon: MessageSquare,
-    tag: null,
-    description: "Build AI chatbots and voice agents that convert",
-  },
-  {
-    name: "Custom AI Web & SaaS Development",
-    href: "/services/custom-ai-development",
-    icon: Code2,
-    tag: null,
-    description: "Full-stack AI-powered web apps and SaaS products",
-  },
-  {
-    name: "AI Data & Predictive Analytics",
-    href: "/services/ai-data-analytics",
-    icon: BarChart3,
-    tag: null,
-    description: "Transform raw data into predictive business insights",
-  },
-];
+import { Menu, X, ChevronDown, ArrowRight, Zap } from "lucide-react";
+import { serviceGroups } from "../../data/services";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -157,65 +117,89 @@ const Navbar = () => {
                     <AnimatePresence>
                       {isServicesOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          // x lives in the motion transform, not a Tailwind
+                          // class: framer-motion writes an inline transform that
+                          // would otherwise clobber -translate-x-1/2 and leave
+                          // the panel left-anchored (overflowing at ~1024px).
+                          initial={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
+                          animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[420px] p-2 rounded-2xl bg-navy-light/95 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/30"
+                          className="absolute top-full left-1/2 mt-3 w-[720px] max-w-[calc(100vw-2rem)] p-3 rounded-2xl bg-navy-light/95 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/30"
                         >
                           {/* Dropdown arrow */}
                           <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-navy-light/95 border-l border-t border-white/10 rotate-45" />
 
-                          <div className="relative z-10 space-y-1">
-                            {serviceLinks.map((service) => {
-                              const Icon = service.icon;
-                              const active = location.pathname === service.href;
-                              return (
-                                <Link
-                                  key={service.href}
-                                  to={service.href}
-                                  className={`flex items-start gap-4 p-3 rounded-xl transition-all duration-200 group/item ${
-                                    active
-                                      ? "bg-coral/10 border border-coral/20"
-                                      : "hover:bg-white/5"
-                                  }`}
-                                >
-                                  <div
-                                    className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
-                                      active
-                                        ? "bg-coral text-white"
-                                        : "bg-white/5 text-coral group-hover/item:bg-coral/10"
-                                    }`}
-                                  >
-                                    <Icon className="w-5 h-5" />
+                          <div className="relative z-10 grid grid-cols-2 gap-3">
+                            {serviceGroups.map((group) => (
+                              <div key={group.title}>
+                                <div className="px-3 pb-2 mb-1 border-b border-white/5">
+                                  <div className="text-[10px] font-mono font-bold text-coral uppercase tracking-wider">
+                                    {group.title}
                                   </div>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2">
-                                      <span className="text-sm font-semibold text-white group-hover/item:text-coral transition-colors duration-200">
-                                        {service.name}
-                                      </span>
-                                      {service.tag && (
-                                        <span className="px-1.5 py-0.5 text-[9px] font-bold bg-coral/20 text-coral rounded-md uppercase tracking-wider">
-                                          {service.tag}
-                                        </span>
-                                      )}
-                                    </div>
-                                    <p className="text-xs text-white/40 mt-0.5 leading-relaxed">
-                                      {service.description}
-                                    </p>
+                                  <div className="text-[10px] text-white/30 mt-0.5">
+                                    {group.caption}
                                   </div>
-                                </Link>
-                              );
-                            })}
+                                </div>
+
+                                <div className="space-y-0.5">
+                                  {group.items.map((service) => {
+                                    const Icon = service.icon;
+                                    const active =
+                                      location.pathname === service.href;
+                                    return (
+                                      <Link
+                                        key={service.href}
+                                        to={service.href}
+                                        className={`flex items-start gap-3 p-2.5 rounded-xl transition-all duration-200 group/item ${
+                                          active
+                                            ? "bg-coral/10 border border-coral/20"
+                                            : "hover:bg-white/5 border border-transparent"
+                                        }`}
+                                      >
+                                        <div
+                                          className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200 ${
+                                            active
+                                              ? "bg-coral text-white"
+                                              : "bg-white/5 text-coral group-hover/item:bg-coral/10"
+                                          }`}
+                                        >
+                                          <Icon className="w-4 h-4" />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                          <div className="flex items-center gap-2">
+                                            <span className="text-[13px] font-semibold text-white group-hover/item:text-coral transition-colors duration-200 leading-snug">
+                                              {service.shortName}
+                                            </span>
+                                            {service.tag && (
+                                              <span className="px-1.5 py-0.5 text-[8px] font-bold bg-coral/20 text-coral rounded-md uppercase tracking-wider flex-shrink-0">
+                                                {service.tag}
+                                              </span>
+                                            )}
+                                          </div>
+                                          <p className="text-[11px] text-white/40 mt-0.5 leading-relaxed">
+                                            {service.description}
+                                          </p>
+                                        </div>
+                                      </Link>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            ))}
                           </div>
 
                           {/* Dropdown footer */}
-                          <div className="mt-2 pt-2 border-t border-white/5">
+                          <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between gap-4 px-2">
+                            <p className="text-[11px] text-white/35 leading-relaxed">
+                              Need several of these? Our packages bundle web,
+                              brand, marketing and AI into one plan.
+                            </p>
                             <Link
-                              to="/services/ai-automation"
-                              className="flex items-center justify-center gap-2 p-2.5 rounded-xl text-xs font-semibold text-coral hover:bg-coral/10 transition-colors duration-200"
+                              to="/packages"
+                              className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-coral hover:bg-coral/10 transition-colors duration-200 whitespace-nowrap"
                             >
-                              Explore AI Automation
+                              View Packages
                               <ArrowRight className="w-3.5 h-3.5" />
                             </Link>
                           </div>
@@ -251,6 +235,8 @@ const Navbar = () => {
 
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
+                aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMobileOpen}
                 className="lg:hidden w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors duration-200"
               >
                 {isMobileOpen ? (
@@ -299,6 +285,7 @@ const Navbar = () => {
                   </div>
                   <button
                     onClick={() => setIsMobileOpen(false)}
+                    aria-label="Close menu"
                     className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white"
                   >
                     <X className="w-5 h-5" />
@@ -337,33 +324,42 @@ const Navbar = () => {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <div className="pl-4 py-2 space-y-1">
-                                {serviceLinks.map((service) => {
-                                  const Icon = service.icon;
-                                  const active =
-                                    location.pathname === service.href;
-                                  return (
-                                    <Link
-                                      key={service.href}
-                                      to={service.href}
-                                      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${
-                                        active
-                                          ? "text-coral bg-coral/10"
-                                          : "text-white/60 hover:text-white hover:bg-white/5"
-                                      }`}
-                                    >
-                                      <Icon className="w-4 h-4 text-coral flex-shrink-0" />
-                                      <span className="truncate">
-                                        {service.name}
-                                      </span>
-                                      {service.tag && (
-                                        <span className="ml-auto px-1.5 py-0.5 text-[8px] font-bold bg-coral/20 text-coral rounded-md">
-                                          {service.tag}
-                                        </span>
-                                      )}
-                                    </Link>
-                                  );
-                                })}
+                              <div className="pl-2 py-2 space-y-4">
+                                {serviceGroups.map((group) => (
+                                  <div key={group.title}>
+                                    <div className="px-4 mb-1.5 text-[10px] font-mono font-bold text-coral uppercase tracking-wider">
+                                      {group.title}
+                                    </div>
+                                    <div className="space-y-1">
+                                      {group.items.map((service) => {
+                                        const Icon = service.icon;
+                                        const active =
+                                          location.pathname === service.href;
+                                        return (
+                                          <Link
+                                            key={service.href}
+                                            to={service.href}
+                                            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${
+                                              active
+                                                ? "text-coral bg-coral/10"
+                                                : "text-white/60 hover:text-white hover:bg-white/5"
+                                            }`}
+                                          >
+                                            <Icon className="w-4 h-4 text-coral flex-shrink-0" />
+                                            <span className="leading-snug">
+                                              {service.shortName}
+                                            </span>
+                                            {service.tag && (
+                                              <span className="ml-auto px-1.5 py-0.5 text-[8px] font-bold bg-coral/20 text-coral rounded-md flex-shrink-0">
+                                                {service.tag}
+                                              </span>
+                                            )}
+                                          </Link>
+                                        );
+                                      })}
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
                             </motion.div>
                           )}
@@ -405,7 +401,7 @@ const Navbar = () => {
                 {/* Mobile footer info */}
                 <div className="mt-8 text-center">
                   <p className="text-xs text-white/30 font-mono">
-                    Expressing Ideas Through Code
+                    AI, Web, Commerce & Growth
                   </p>
                 </div>
               </div>

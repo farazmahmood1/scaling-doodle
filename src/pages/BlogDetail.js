@@ -19,6 +19,12 @@ import {
   CheckCircle2,
   Lightbulb,
   Quote,
+  ShoppingBag,
+  Video,
+  Gauge,
+  Palette,
+  Layers,
+  Search,
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import Seo from "../components/ui/Seo";
@@ -40,8 +46,392 @@ const itemVariants = {
   },
 };
 
+// Author bylines, kept in step with the team listed on the About page.
+const AUTHOR_ROLES = {
+  "Victoria Zoe": "Head of Growth & Brand",
+  "Fentola James": "Lead Full-Stack Developer",
+  "Sarah Khan": "Head of AI Engineering",
+  "Joseph Lee": "Founder & AI Architect",
+};
+
 // ─── Blog Data ──────────────────────────────────────────────────────
 const blogData = {
+  "ai-first-growth-stack": {
+    title: "The AI-First Growth Stack: Why Brand, Site and Marketing Compound",
+    category: "Industry Trends",
+    author: "Victoria Zoe",
+    date: "August 4, 2026",
+    readTime: "9 min read",
+    icon: Layers,
+    image: "linear-gradient(135deg, #e44946 0%, #ef6c68 50%, #0A192F 100%)",
+    intro:
+      "Most growing businesses buy their brand from one place, their website from another, their marketing from a third, and their AI tooling from whoever demoed best last quarter. Each vendor optimises their own slice. Nobody owns the number that matters. Here's what changes when those four things are designed as one system.",
+    sections: [
+      {
+        heading: "The Four-Vendor Problem",
+        content:
+          "The pattern is remarkably consistent. A designer delivers a beautiful brand that the web developer implements approximately. The marketing agency then drives traffic to pages they had no say in, and blames conversion. The AI vendor bolts a chatbot on top that doesn't know what any of them decided.\n\nEverybody is individually competent and collectively ineffective, because there is no shared definition of success. The designer measures aesthetics. The developer measures uptime. The agency measures traffic. The AI vendor measures deflected tickets. Not one of them is accountable for revenue.",
+      },
+      {
+        heading: "What Compounding Actually Looks Like",
+        content:
+          "When the same team owns all four layers, each one makes the others cheaper and more effective:",
+        bullets: [
+          "Brand into build, design tokens defined during identity work map directly into components, so the site ships on-brand without a translation phase.",
+          "Build into marketing, a site engineered for Core Web Vitals and schema from day one means SEO doesn't start with a three-month technical remediation project.",
+          "Marketing into AI, the objections your ads surface become the training material for your support chatbot and your lead qualification logic.",
+          "AI back into brand, transcripts from thousands of conversations tell you exactly which words your customers use, which sharpens your messaging far better than a workshop does.",
+        ],
+      },
+      {
+        heading: "The Cost of the Gaps",
+        content:
+          "Gaps between vendors are expensive in ways that never appear on an invoice. Rebuilding a page because the design file and the code drifted. Losing a month of ad spend to conversion tracking nobody owned. Discovering at launch that the CMS can't produce the landing page structure the SEO strategy depends on.\n\nIn our experience these integration costs routinely account for 20 to 30 percent of a project's total spend, and they are entirely avoidable. They are also invisible, which is why they persist.",
+      },
+      {
+        heading: "Where AI Belongs in the Stack",
+        content:
+          "AI is not a fifth product bolted onto the other four. It is a layer that runs across all of them, and it only produces value when the layers underneath are sound.\n\nAn AI agent handling enquiries is worth very little if your site takes eight seconds to load and nobody arrives. Conversely, a fast site with strong traffic and no automated follow-up leaks every lead that arrives outside working hours. Sequence matters: fix the foundation, drive the demand, then automate the response.",
+      },
+      {
+        heading: "How to Start Without Rebuilding Everything",
+        content:
+          "You do not need to replace all four vendors on day one. Start by defining one shared metric that every layer is judged against, usually qualified leads or orders, and instrument it properly end to end.\n\nThat single act exposes where the leaks are. Sometimes the answer is a faster site. Sometimes it's clearer positioning. Sometimes it's an AI agent answering at 11pm on a Sunday. What matters is that you can now see it, rather than receiving four separate reports that all look green.",
+      },
+    ],
+    quote: {
+      text: "Four competent vendors optimising four different metrics will reliably lose to one team optimising the metric that pays the bills.",
+      author: "Victoria Zoe",
+    },
+    keyTakeaways: [
+      "Separate vendors optimise separate metrics, and nobody owns revenue.",
+      "Integration gaps quietly consume 20 to 30 percent of typical project budgets.",
+      "AI is a layer across the stack, not a fifth product bolted onto it.",
+      "Start by instrumenting one shared metric end to end, then fix what it exposes.",
+    ],
+    relatedPosts: [
+      "shopify-conversion-optimisation",
+      "ai-automation-transforming-business-2025",
+    ],
+  },
+  "shopify-conversion-optimisation": {
+    title: "Shopify Conversion Optimisation: Where Stores Actually Lose Money",
+    category: "E-Commerce",
+    author: "Fentola James",
+    date: "July 22, 2026",
+    readTime: "8 min read",
+    icon: ShoppingBag,
+    image: "linear-gradient(135deg, #0D2137 0%, #e44946 100%)",
+    intro:
+      "We audit a lot of Shopify stores. The same six leaks turn up in almost every one, and none of them are the things store owners worry about. Here they are, ranked by how much revenue they typically cost, along with the fixes that reliably move the number within a month.",
+    sections: [
+      {
+        heading: "Leak One: Product Pages That Answer the Wrong Questions",
+        content:
+          "Most product pages describe the product. Very few address the reason someone hesitates. Will it fit? How long is delivery? What happens if I hate it? Is this the right one for my situation?\n\nGo read thirty support tickets and thirty pre-purchase chat transcripts, then rebuild the page around what people actually ask. In practice this usually means moving sizing, delivery and returns information above the fold and adding a short comparison block for whichever two products people confuse. It is unglamorous, and it is consistently the highest-return change we make.",
+      },
+      {
+        heading: "Leak Two: A Slow Store on Mobile",
+        content:
+          "Shopify's infrastructure is fast. Most themes are not, once they have accumulated six apps that each inject their own JavaScript. We regularly see stores loading five megabytes on a product page.\n\nAudit your app list ruthlessly. Every app you keep should be earning more than it costs in load time. Compress and resize images properly, defer third-party scripts, and test on a mid-range Android phone on 4G rather than your laptop on office wifi.",
+      },
+      {
+        heading: "Leak Three: Nothing Happens After an Abandoned Cart",
+        content:
+          "Roughly seven in ten carts are abandoned. Most stores send one generic email three hours later, if anything at all. A sequenced recovery flow across email and WhatsApp, with genuinely useful content rather than an immediate discount, typically recovers 10 to 15 percent of those carts.\n\nHold the discount back until the third message. Offering it in the first email teaches your customers to abandon deliberately, which is an expensive habit to instil.",
+      },
+      {
+        heading: "Leak Four: Search That Doesn't Find Things",
+        content:
+          "Visitors who use site search convert at several times the rate of those who don't, which makes default keyword-matching search an unusually costly weakness. Someone typing 'waterproof jacket' and getting zero results because you called it a 'shell' is a customer you paid to acquire and then turned away.\n\nSemantic search fixes this properly, and it is one of the clearest, most measurable places AI earns its keep in commerce.",
+      },
+      {
+        heading: "Leak Five: No Post-Purchase Sequence",
+        content:
+          "Acquiring a new customer costs several times more than selling to an existing one, yet most stores go silent the moment an order confirmation is sent. A post-purchase sequence covering delivery updates, care or usage guidance, a review request at the right moment and a replenishment reminder timed to actual product life is the cheapest revenue in commerce.",
+      },
+      {
+        heading: "Leak Six: Testing Based on Vibes",
+        content:
+          "Plenty of stores run 'tests' that end after four days because the founder preferred one version. That isn't a test, it's a decision with extra steps.\n\nRun one change at a time, to a genuine sample size, for a full business cycle including weekends. Fewer, better-run tests will teach you more in a quarter than a dozen abandoned ones.",
+      },
+    ],
+    quote: {
+      text: "Nobody has ever left a store because the hero animation wasn't smooth enough. They leave because they couldn't find the delivery time.",
+      author: "Fentola James",
+    },
+    keyTakeaways: [
+      "Rebuild product pages around real customer objections, not product features.",
+      "Audit your app list, each one should earn more than it costs in load time.",
+      "Sequence cart recovery across channels and hold the discount until message three.",
+      "Semantic site search and post-purchase flows are the cheapest revenue available.",
+    ],
+    relatedPosts: ["choosing-your-web-stack", "seo-in-the-age-of-ai-answers"],
+  },
+  "seo-in-the-age-of-ai-answers": {
+    title: "SEO in the Age of AI Answers: How to Get Cited, Not Just Ranked",
+    category: "SEO & Marketing",
+    author: "Victoria Zoe",
+    date: "July 8, 2026",
+    readTime: "10 min read",
+    icon: Search,
+    image: "linear-gradient(135deg, #112240 0%, #ef6c68 100%)",
+    intro:
+      "Ranking first used to mean getting the click. Now an AI Overview, ChatGPT or Perplexity often answers the question before anyone scrolls. That doesn't make SEO obsolete, but it does change what you optimise for: being the source the answer is built from.",
+    sections: [
+      {
+        heading: "What Actually Changed",
+        content:
+          "The mechanics of discovery haven't changed as much as the commentary suggests. Crawlers still crawl, links still signal authority, and page quality still matters. What changed is the surface. A meaningful share of informational queries now resolve inside an AI answer, with two or three sources cited beneath it.\n\nThe practical consequence is that mid-funnel informational traffic is falling for almost everyone, while commercial and comparison queries still send clicks. Optimising for volume alone has never been a worse strategy.",
+      },
+      {
+        heading: "What Earns a Citation",
+        content:
+          "Across the sites we manage, the content that gets cited by AI systems shares a consistent set of traits:",
+        bullets: [
+          "Direct answers early, a clear, self-contained paragraph that answers the question in the first hundred words, before any preamble.",
+          "Extractable structure, real headings that match real questions, short paragraphs, and tables or lists where the data suits them.",
+          "Specific, checkable facts, numbers, dates, named methods and stated conditions. Vague copy is unquotable and gets skipped.",
+          "Named authorship and evidence, a real author with demonstrable experience, first-hand data and sources that can be verified.",
+          "Strong entity signals, consistent organisation and author schema so the model can connect your content to a credible entity.",
+        ],
+      },
+      {
+        heading: "The Technical Layer Still Decides",
+        content:
+          "None of the above matters if the crawlers can't reach you. Check that GPTBot, ClaudeBot, PerplexityBot and Google-Extended are allowed in your robots.txt if you want to appear in AI answers, and understand that blocking them is a legitimate choice with an obvious cost.\n\nBeyond that, the fundamentals are unchanged and unforgiving: fast server responses, content rendered without requiring JavaScript execution, clean canonical URLs, accurate sitemaps and complete structured data.",
+      },
+      {
+        heading: "Measuring Something New",
+        content:
+          "Rank tracking alone no longer describes reality. Add brand mention tracking across AI platforms, monitor impressions against clicks in Search Console to spot queries being answered without you, and watch branded search volume as a proxy for the awareness AI citations create even when they don't send a click.\n\nExpect a widening gap between impressions and clicks on informational content. That gap is not necessarily failure. It is often visibility you are gaining without attribution, which is uncomfortable but real.",
+      },
+      {
+        heading: "What to Stop Doing",
+        content:
+          "Stop publishing thin content targeting long-tail informational keywords, that traffic is precisely what AI answers absorb first. Stop padding articles to hit an arbitrary word count. Stop chasing volume without commercial intent.\n\nWrite fewer, better pages that a person with genuine expertise would be willing to put their name on. That has always been the advice. The difference now is that the alternative has stopped working entirely.",
+      },
+    ],
+    quote: {
+      text: "Optimising for AI answers isn't a new discipline. It's the old advice, finally enforced: say something specific, say it early, and be someone worth quoting.",
+      author: "Victoria Zoe",
+    },
+    keyTakeaways: [
+      "Informational traffic is being absorbed by AI answers, commercial queries still click.",
+      "Answer directly in the first hundred words, with structure a model can extract.",
+      "Allow AI crawlers deliberately and keep schema, speed and rendering clean.",
+      "Track brand mentions in AI platforms alongside traditional rankings.",
+    ],
+    relatedPosts: ["short-form-video-system", "ai-first-growth-stack"],
+  },
+  "short-form-video-system": {
+    title: "The Short-Form Video System That Actually Builds Pipeline",
+    category: "Social Media",
+    author: "Victoria Zoe",
+    date: "June 24, 2026",
+    readTime: "7 min read",
+    icon: Video,
+    image: "linear-gradient(135deg, #c83c38 0%, #0D2137 100%)",
+    intro:
+      "Every business knows it should be making short-form video. Most produce four decent pieces, run out of ideas, and quietly stop. The problem is almost never talent or budget. It's the absence of a system that makes the next twenty assets obvious.",
+    sections: [
+      {
+        heading: "Start With Objections, Not Trends",
+        content:
+          "The most reliable content source in any business is the sales team's inbox. Every objection, every 'but what about', every question asked three times a week is a video.\n\nThis works because it is content with commercial intent baked in. Trend-chasing might get you reach among people who will never buy. Answering the question that stops people buying gets you reach among people who are actively considering it.",
+      },
+      {
+        heading: "The Hook Is Most of the Work",
+        content:
+          "The first two seconds decide whether the other twenty-eight are watched. Write hooks before you write scripts, and write ten for every video you plan to make.\n\nThe patterns that consistently perform for us: name the mistake ('Most Shopify stores lose money here'), contradict the consensus, state a specific number, or open mid-story. What consistently fails: introducing yourself, explaining what the video will cover, and any sentence beginning 'In today's video'.",
+      },
+      {
+        heading: "One Shoot, Twenty Assets",
+        content:
+          "Sustainable output comes from batching, not discipline. A single half-day shoot, properly planned, produces a month of content:",
+        bullets: [
+          "Eight to ten talking-head pieces from your objection list, filmed back to back.",
+          "B-roll of the actual work, which becomes overlay for every one of them.",
+          "Two longer conversations that cut down into six or seven clips each.",
+          "Stills for carousels and statics, captured in the same session and lighting.",
+        ],
+      },
+      {
+        heading: "Where AI Helps and Where It Doesn't",
+        content:
+          "AI is genuinely useful for research, generating hook variants to react to, captioning, transcription, repurposing a video into a carousel outline, and analysing performance patterns across hundreds of posts.\n\nIt is not useful for writing your actual scripts. AI-generated social copy has a texture that audiences now recognise instantly, and it reads as effort you were not willing to spend. Use it to remove friction from production, not to replace the point of view that makes anyone follow you.",
+      },
+      {
+        heading: "Measure Watch Time, Then Pipeline",
+        content:
+          "For the first ninety days, optimise for retention. Average watch time and three-second hold rate tell you whether your hooks and pacing work, long before follower count means anything.\n\nAfter that, connect it to pipeline: profile clicks, link clicks, DMs and, most importantly, how often new leads mention having seen your content. That last one rarely shows up in any dashboard, so add the question to your intake form.",
+      },
+    ],
+    quote: {
+      text: "You don't need more ideas. You need a list of the questions your customers already ask, and a camera.",
+      author: "Victoria Zoe",
+    },
+    keyTakeaways: [
+      "Source content from real sales objections rather than platform trends.",
+      "Write ten hooks per video, the first two seconds do most of the work.",
+      "Batch production, one planned half-day shoot yields a month of assets.",
+      "Optimise for retention first, then connect output to actual pipeline.",
+    ],
+    relatedPosts: ["seo-in-the-age-of-ai-answers", "brand-system-not-just-logo"],
+  },
+  "wordpress-speed-what-works": {
+    title: "Why Your WordPress Site Is Slow, and What Actually Fixes It",
+    category: "Web Development",
+    author: "Fentola James",
+    date: "June 10, 2026",
+    readTime: "7 min read",
+    icon: Gauge,
+    image: "linear-gradient(135deg, #0A192F 0%, #D0EAF5 100%)",
+    intro:
+      "Installing a caching plugin is the WordPress equivalent of turning it off and on again. Sometimes it helps. It rarely addresses why the site was slow in the first place. Here's what we find when we open the hood on genuinely slow WordPress sites, in order of how much damage it's doing.",
+    sections: [
+      {
+        heading: "The Page Builder Tax",
+        content:
+          "Page builders are the single largest cause of slow WordPress sites we encounter. They are convenient, and they ship enormous CSS and JavaScript payloads on every single page, most of which is never used by that page.\n\nOn a recent rescue project, moving a thirty-page site from a builder to native blocks with Advanced Custom Fields took page weight from 5.4MB to 780KB, with no visual change the client could point to. The editing experience got simpler, not harder, because the team could only compose layouts that were on-brand by construction.",
+      },
+      {
+        heading: "Plugin Sprawl",
+        content:
+          "Forty-plus active plugins is common and almost always indefensible. Each one adds queries, scripts, styles and an update surface. We regularly find three plugins doing overlapping jobs, a slider plugin used once on a page nobody visits, and two SEO plugins actively fighting each other over meta tags.\n\nThe test for each plugin is simple: what does it earn, and could twenty lines of code in the theme do the same thing? Roughly a third of the average install fails that test.",
+      },
+      {
+        heading: "Images, Still",
+        content:
+          "It's 2026 and we are still finding 4000-pixel-wide JPEGs being displayed at 400 pixels. Images remain the largest byte contributor on most pages, and the fix is well understood: modern formats, correct responsive sources, explicit width and height attributes to prevent layout shift, and lazy loading everything below the fold.\n\nAutomate it at upload so nobody has to remember, because eventually nobody will.",
+      },
+      {
+        heading: "The Database Nobody Has Ever Cleaned",
+        content:
+          "A five-year-old site typically carries tens of thousands of post revisions, expired transients, orphaned metadata from plugins removed years ago, and spam comments in the queue. This bloats every query and slows the admin experience your team uses daily.\n\nPrune revisions, clear expired transients, remove orphaned rows and add object caching. Admin speed matters more than people admit, because a slow editor is how content programmes quietly die.",
+      },
+      {
+        heading: "Then, and Only Then, Caching",
+        content:
+          "Once the underlying page is lean, caching and a CDN are genuinely transformative rather than a plaster over the problem. Page caching, object caching, a CDN in front of static assets and sensible cache headers will take an already-lean site to consistently sub-second loads.\n\nDo it in this order. Caching a bloated page just means you serve the bloat faster.",
+      },
+    ],
+    quote: {
+      text: "Caching a 5MB page doesn't make it fast. It makes it a 5MB page that arrives slightly sooner.",
+      author: "Fentola James",
+    },
+    keyTakeaways: [
+      "Page builders are usually the biggest single cause of slow WordPress sites.",
+      "Audit plugins ruthlessly, around a third typically earn nothing.",
+      "Automate the image pipeline so correct sizing never depends on memory.",
+      "Clean the database and fix the page first, then add caching and a CDN.",
+    ],
+    relatedPosts: ["choosing-your-web-stack", "shopify-conversion-optimisation"],
+  },
+  "brand-system-not-just-logo": {
+    title: "A Brand Is a System, Not a Logo File",
+    category: "Branding & Design",
+    author: "Victoria Zoe",
+    date: "May 27, 2026",
+    readTime: "6 min read",
+    icon: Palette,
+    image: "linear-gradient(135deg, #0A192F 0%, #e44946 50%, #112240 100%)",
+    intro:
+      "Six months after a rebrand, most brands have quietly drifted. Three shades of the primary colour are in circulation, the deck uses a different typeface to the site, and somebody has stretched the logo. This isn't carelessness. It's what happens when you deliver assets instead of a system.",
+    sections: [
+      {
+        heading: "Why Identities Drift",
+        content:
+          "Drift is a supply problem, not a discipline problem. Someone needs a social graphic at 5pm, the template doesn't cover that format, and the brand guidelines are a 40-page PDF in a folder nobody can find. So they improvise, reasonably, and the improvisation becomes precedent.\n\nMultiply that by a growing team, three freelancers and an agency, and within two quarters the brand is whatever the last person made.",
+      },
+      {
+        heading: "Tokens, Not Swatches",
+        content:
+          "The fix starts with defining your brand as named values rather than colour chips in a PDF. Colour, type scale, spacing, radii and shadow all become tokens with names, and those names appear identically in Figma and in code.\n\nThis matters because it removes judgement from the moment of use. Nobody has to decide which navy this is. There is one, it is called brand-primary, and it resolves to the same hex everywhere it appears.",
+      },
+      {
+        heading: "Templates for Whatever You Make Weekly",
+        content:
+          "Audit what your team genuinely produces most often. For most businesses that's social posts, proposals, decks and email. Those are the templates that prevent drift, and they're often the ones brand projects skip in favour of stationery nobody prints.",
+        bullets: [
+          "Social post and story sets for the formats you actually publish.",
+          "A deck template with real slide layouts, not just a branded title slide.",
+          "Proposal and document templates with the type scale already applied.",
+          "A component library in Figma that mirrors the components in your codebase.",
+        ],
+      },
+      {
+        heading: "Guidelines People Will Actually Open",
+        content:
+          "A brand guideline is a working document, not a monument. The version people use is short, shows correct and incorrect side by side, lives somewhere linkable, and answers the awkward questions: what happens on a photo background, what's the minimum size, which logo variant on dark.\n\nShip the long PDF if you like the artefact. Also ship the live Figma file, because that's the one your team will open at 5pm.",
+      },
+      {
+        heading: "Accessibility Is Part of the System",
+        content:
+          "Test every colour pairing for contrast before it enters the palette, not after a customer complains. Brands that only work at full brightness on a designer's calibrated monitor fail on a phone in daylight, which is where most of your audience will encounter them.",
+      },
+    ],
+    quote: {
+      text: "Brands don't drift because people stop caring. They drift because at 5pm the template didn't exist and the deadline did.",
+      author: "Victoria Zoe",
+    },
+    keyTakeaways: [
+      "Identity drift is a supply problem, solved with templates and tokens.",
+      "Define brand values as named tokens shared between Figma and code.",
+      "Build templates for what your team makes weekly, not for stationery.",
+      "Ship a short, linkable, living guideline alongside any formal PDF.",
+    ],
+    relatedPosts: ["ai-first-growth-stack", "short-form-video-system"],
+  },
+  "choosing-your-web-stack": {
+    title: "React, Shopify or WordPress? Choosing a Stack You Won't Regret",
+    category: "Web Development",
+    author: "Fentola James",
+    date: "May 13, 2026",
+    readTime: "8 min read",
+    icon: Code2,
+    image: "linear-gradient(135deg, #0D2137 0%, #D0EAF5 100%)",
+    intro:
+      "Agencies tend to recommend whatever they build in. That's a bad reason to pick a platform you'll live with for five years. We build in all three, so here's the decision framework we actually use internally, including the cases where the honest answer costs us the project.",
+    sections: [
+      {
+        heading: "Start With Who Edits It",
+        content:
+          "The single most predictive question is not technical. It's who updates this site on a Tuesday afternoon, and what are they comfortable with?\n\nA beautifully architected headless build is a liability if the marketing team then has to file a ticket to change a headline. Conversely, giving a technical team WordPress when they need custom application logic guarantees years of fighting the framework. Match the tool to the humans first.",
+      },
+      {
+        heading: "When WordPress Is Right",
+        content:
+          "WordPress remains an excellent choice when content volume is high and changes are frequent, when a non-technical team needs genuine autonomy, when you need a mature ecosystem for forms, memberships or multilingual content, and when budget favours proven solutions over bespoke ones.\n\nIt's the wrong choice when your product is an application rather than a site, when you need real-time features, or when your team has no appetite for ongoing maintenance. WordPress is not maintenance-free, and treating it that way is how sites get compromised.",
+      },
+      {
+        heading: "When Shopify Is Right",
+        content:
+          "If you sell physical products, Shopify's default position should be very strong. Payments, tax, shipping, inventory, fraud handling and PCI compliance are solved problems you would otherwise rebuild badly.\n\nIt becomes the wrong answer when commerce is a minor part of a mostly-content site, when you need highly unusual checkout logic outside what Shopify Functions allow, or when your catalogue and pricing model genuinely doesn't fit a products-and-variants shape. Those cases are rarer than founders think.",
+      },
+      {
+        heading: "When Custom React Is Right",
+        content:
+          "Custom builds earn their cost when the site is really an application, when you need bespoke interaction or data models, when performance is a competitive requirement rather than a preference, or when you're building something you intend to own and extend for years.\n\nThey are the wrong answer when you need a ten-page brochure site next month. We turn that work down, or steer it to WordPress, because a custom build there is us taking money to solve a problem that didn't need solving.",
+      },
+      {
+        heading: "The Hybrid Nobody Mentions",
+        content:
+          "Plenty of the best setups mix platforms deliberately. A Next.js marketing site with a headless CMS, in front of a Shopify storefront handling checkout. A custom application with a WordPress blog on a subdirectory for content velocity.\n\nThe cost of hybrid is complexity at the seams, which is real. The benefit is that each part of your business runs on the tool that's genuinely best for it. That trade is usually worth it above a certain size, and rarely worth it below it.",
+      },
+    ],
+    quote: {
+      text: "The right stack is the one your team can still move fast on in year three, not the one that demos best in week one.",
+      author: "Fentola James",
+    },
+    keyTakeaways: [
+      "Ask who edits the site weekly before asking anything technical.",
+      "WordPress wins on content velocity and non-technical autonomy.",
+      "Shopify wins on physical product commerce, by a wide margin.",
+      "Custom React earns its cost for applications, not brochure sites.",
+    ],
+    relatedPosts: ["wordpress-speed-what-works", "shopify-conversion-optimisation"],
+  },
   "ai-automation-transforming-business-2025": {
     title: "How AI Automation Is Transforming Business Operations in 2025",
     category: "AI Automation",
@@ -365,8 +755,57 @@ const blogData = {
 
 // Minimal post reference for related posts
 const postIndex = {
+  "ai-first-growth-stack": {
+    title: "The AI-First Growth Stack: Why Brand, Site and Marketing Compound",
+    category: "Industry Trends",
+    readTime: "9 min read",
+    icon: Layers,
+    image: "linear-gradient(135deg, #e44946 0%, #ef6c68 50%, #0A192F 100%)",
+  },
+  "shopify-conversion-optimisation": {
+    title: "Shopify Conversion Optimisation: Where Stores Actually Lose Money",
+    category: "E-Commerce",
+    readTime: "8 min read",
+    icon: ShoppingBag,
+    image: "linear-gradient(135deg, #0D2137 0%, #e44946 100%)",
+  },
+  "seo-in-the-age-of-ai-answers": {
+    title: "SEO in the Age of AI Answers: How to Get Cited, Not Just Ranked",
+    category: "SEO & Marketing",
+    readTime: "10 min read",
+    icon: Search,
+    image: "linear-gradient(135deg, #112240 0%, #ef6c68 100%)",
+  },
+  "short-form-video-system": {
+    title: "The Short-Form Video System That Actually Builds Pipeline",
+    category: "Social Media",
+    readTime: "7 min read",
+    icon: Video,
+    image: "linear-gradient(135deg, #c83c38 0%, #0D2137 100%)",
+  },
+  "wordpress-speed-what-works": {
+    title: "Why Your WordPress Site Is Slow, and What Actually Fixes It",
+    category: "Web Development",
+    readTime: "7 min read",
+    icon: Gauge,
+    image: "linear-gradient(135deg, #0A192F 0%, #D0EAF5 100%)",
+  },
+  "brand-system-not-just-logo": {
+    title: "A Brand Is a System, Not a Logo File",
+    category: "Branding & Design",
+    readTime: "6 min read",
+    icon: Palette,
+    image: "linear-gradient(135deg, #0A192F 0%, #e44946 50%, #112240 100%)",
+  },
+  "choosing-your-web-stack": {
+    title: "React, Shopify or WordPress? Choosing a Stack You Won't Regret",
+    category: "Web Development",
+    readTime: "8 min read",
+    icon: Code2,
+    image: "linear-gradient(135deg, #0D2137 0%, #D0EAF5 100%)",
+  },
   "ai-automation-transforming-business-2025": {
-    title: "How AI Automation Is Transforming Business Operations in 2025",
+    title: "How AI Automation Is Transforming Business Operations",
     category: "AI Automation",
     readTime: "8 min read",
     icon: Bot,
@@ -419,7 +858,7 @@ const BlogDetail = () => {
       <div className="min-h-screen flex flex-col items-center justify-center bg-navy">
         <Seo
           title="Article Not Found | Codilated Blog"
-          description="The blog post you're looking for doesn't exist. Browse Codilated's latest AI automation and machine learning articles."
+          description="The blog post you're looking for doesn't exist. Browse Codilated's latest articles on AI, web development, e-commerce, branding and marketing."
           noindex
         />
         <span className="section-tag mb-4">404 Error</span>
@@ -539,7 +978,7 @@ const BlogDetail = () => {
                     {post.author}
                   </div>
                   <div className="text-sm text-white/40">
-                    AI Solutions Architect
+                    {AUTHOR_ROLES[post.author] || "Codilated Team"}
                   </div>
                 </div>
               </div>
@@ -747,12 +1186,13 @@ const BlogDetail = () => {
           <AnimatedSection>
             <span className="section-tag">Ready to Start?</span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6 text-balance">
-              Let's Build Your{" "}
-              <span className="gradient-text">AI Solution</span>
+              Want This{" "}
+              <span className="gradient-text">Done Properly?</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
-              Interested in implementing the strategies discussed in this
-              article? Let's talk about how we can help.
+              We do this work every week across AI automation, web and
+              e-commerce builds, branding and marketing. Tell us where you're
+              stuck and we'll tell you what we'd do first.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

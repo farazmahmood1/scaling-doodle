@@ -13,16 +13,7 @@ import { FaLinkedinIn, FaXTwitter, FaGithub, FaInstagram } from "react-icons/fa6
 
 const footerSections = [
   {
-    title: "Company",
-    links: [
-      { name: "About Us", href: "/about" },
-      { name: "Packages", href: "/packages" },
-      { name: "Blog", href: "/blog" },
-      { name: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Services",
+    title: "AI & Automation",
     links: [
       { name: "AI Automation", href: "/services/ai-automation", badge: "Hot" },
       { name: "Conversational AI", href: "/services/conversational-ai" },
@@ -31,11 +22,28 @@ const footerSections = [
     ],
   },
   {
-    title: "Resources",
+    title: "Web & Commerce",
     links: [
-      { name: "Case Studies", href: "/blog" },
-      { name: "AI Insights", href: "/blog" },
-      { name: "Documentation", href: "/blog" },
+      { name: "Web & App Development", href: "/services/web-development" },
+      { name: "Shopify & E-Commerce", href: "/services/shopify-ecommerce" },
+      { name: "WordPress Development", href: "/services/wordpress-development" },
+      { name: "Branding & Design", href: "/services/branding-design" },
+    ],
+  },
+  {
+    title: "Growth",
+    links: [
+      { name: "Social Media Marketing", href: "/services/social-media-marketing" },
+      { name: "Digital Marketing & SEO", href: "/services/digital-marketing" },
+      { name: "Packages & Pricing", href: "/packages" },
+      { name: "Insights & Blog", href: "/blog" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { name: "About Us", href: "/about" },
+      { name: "Contact", href: "/contact" },
       { name: "FAQ", href: "/contact" },
     ],
   },
@@ -70,11 +78,11 @@ const Footer = () => {
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
-                Ready to Automate Your Business?
+                Ready to Build Something Better?
               </h3>
               <p className="text-white/80 text-sm sm:text-base max-w-lg">
-                Let's build intelligent AI systems that save you time, cut costs,
-                and scale your operations effortlessly.
+                Website, store, brand, campaign or AI system, tell us what you
+                need and we'll come back with a plan, a timeline and a price.
               </p>
             </div>
             <Link
@@ -90,7 +98,7 @@ const Footer = () => {
 
       {/* Main Footer Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <Link to="/" className="inline-flex items-center group mb-6">
@@ -102,8 +110,9 @@ const Footer = () => {
             </Link>
 
             <p className="text-white/40 text-sm leading-relaxed mb-6 max-w-xs">
-              Expressing Ideas Through Code. We build intelligent AI solutions
-              that transform businesses and create competitive advantages.
+              Expressing Ideas Through Code. An AI-first digital agency building
+              the automation, websites, stores, brands and campaigns that grow
+              modern businesses.
             </p>
 
             {/* Contact Info */}
@@ -127,59 +136,62 @@ const Footer = () => {
                 Global, Remote First
               </div>
             </div>
+
+            {/* Newsletter */}
+            <div className="mt-8 pt-8 border-t border-white/5 max-w-xs">
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3">
+                Stay Updated
+              </h4>
+              <p className="text-sm text-white/40 mb-4">
+                Monthly insights on AI, web, e-commerce and growth. No fluff.
+              </p>
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="flex flex-col sm:flex-row gap-3"
+              >
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  aria-label="Email address"
+                  className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-white/30 focus:outline-none focus:border-coral/50 focus:ring-1 focus:ring-coral/20 transition-colors duration-200"
+                />
+                <button
+                  type="submit"
+                  className="px-5 py-2.5 bg-coral/10 text-coral text-sm font-semibold rounded-lg hover:bg-coral/20 transition-colors duration-200 whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
           </div>
 
           {/* Link Columns */}
-          {footerSections.map((section) => (
-            <div key={section.title} className="lg:col-span-2">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-5">
-                {section.title}
-              </h4>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      to={link.href}
-                      className="group flex items-center gap-2 text-sm text-white/40 hover:text-coral transition-colors duration-200"
-                    >
-                      {link.name}
-                      {link.badge && (
-                        <span className="px-1.5 py-0.5 text-[9px] font-bold bg-coral/20 text-coral rounded-md uppercase">
-                          {link.badge}
-                        </span>
-                      )}
-                      <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          {/* Newsletter Column */}
-          <div className="lg:col-span-2">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-5">
-              Stay Updated
-            </h4>
-            <p className="text-sm text-white/40 mb-4">
-              Get AI insights and updates delivered to your inbox.
-            </p>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="flex flex-col gap-3"
-            >
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-white/30 focus:outline-none focus:border-coral/50 focus:ring-1 focus:ring-coral/20 transition-colors duration-200"
-              />
-              <button
-                type="submit"
-                className="w-full px-4 py-2.5 bg-coral/10 text-coral text-sm font-semibold rounded-lg hover:bg-coral/20 transition-colors duration-200"
-              >
-                Subscribe
-              </button>
-            </form>
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
+            {footerSections.map((section) => (
+              <div key={section.title}>
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-5">
+                  {section.title}
+                </h4>
+                <ul className="space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.name}>
+                      <Link
+                        to={link.href}
+                        className="group flex items-center gap-2 text-sm text-white/40 hover:text-coral transition-colors duration-200"
+                      >
+                        {link.name}
+                        {link.badge && (
+                          <span className="px-1.5 py-0.5 text-[9px] font-bold bg-coral/20 text-coral rounded-md uppercase">
+                            {link.badge}
+                          </span>
+                        )}
+                        <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 flex-shrink-0" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 

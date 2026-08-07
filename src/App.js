@@ -24,11 +24,19 @@ import BlogDetail from "./pages/BlogDetail";
 import Contact    from "./pages/Contact";
 import Packages   from "./pages/Packages";
 
-// Service Pages
+// Service Pages, AI & Automation
 import AIAutomation       from "./pages/services/AIAutomation";
 import ConversationalAI   from "./pages/services/ConversationalAI";
 import CustomAIDev        from "./pages/services/CustomAIDev";
 import AIDataAnalytics    from "./pages/services/AIDataAnalytics";
+
+// Service Pages, Web / Commerce / Growth
+import WebDevelopment       from "./pages/services/WebDevelopment";
+import ShopifyEcommerce     from "./pages/services/ShopifyEcommerce";
+import WordPressDevelopment from "./pages/services/WordPressDevelopment";
+import SocialMediaMarketing from "./pages/services/SocialMediaMarketing";
+import DigitalMarketing     from "./pages/services/DigitalMarketing";
+import BrandingDesign       from "./pages/services/BrandingDesign";
 
 // Scroll-to-top on route change
 function ScrollToTop() {
@@ -71,6 +79,30 @@ function AnimatedRoutes() {
           path="/services/ai-data-analytics"
           element={<AIDataAnalytics />}
         />
+        <Route
+          path="/services/web-development"
+          element={<WebDevelopment />}
+        />
+        <Route
+          path="/services/shopify-ecommerce"
+          element={<ShopifyEcommerce />}
+        />
+        <Route
+          path="/services/wordpress-development"
+          element={<WordPressDevelopment />}
+        />
+        <Route
+          path="/services/social-media-marketing"
+          element={<SocialMediaMarketing />}
+        />
+        <Route
+          path="/services/digital-marketing"
+          element={<DigitalMarketing />}
+        />
+        <Route
+          path="/services/branding-design"
+          element={<BrandingDesign />}
+        />
 
         {/* 404 Fallback */}
         <Route path="*" element={<NotFound />} />
@@ -85,7 +117,7 @@ function NotFound() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-navy">
       <Seo
         title="Page Not Found (404) | Codilated"
-        description="The page you're looking for doesn't exist. Return to Codilated to explore our AI automation, chatbot, and custom AI development services."
+        description="The page you're looking for doesn't exist. Return to Codilated to explore our AI automation, web development, e-commerce, branding and marketing services."
         noindex
       />
       <span className="section-tag mb-4">404 Error</span>

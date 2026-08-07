@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import AnimatedSection from "../../components/ui/AnimatedSection";
 import PageHero from "../../components/ui/PageHero";
+import RelatedServices from "../../components/ui/RelatedServices";
 import Seo from "../../components/ui/Seo";
 import JsonLd from "../../components/ui/JsonLd";
 import { serviceSchema } from "../../seo/schemas";
@@ -419,6 +420,16 @@ const ConversationalAI = () => {
         </div>
       </section>
 
+      {/* ════════ RELATED SERVICES ════════ */}
+      <RelatedServices
+        hrefs={[
+          "/services/ai-automation",
+          "/services/social-media-marketing",
+          "/services/shopify-ecommerce",
+        ]}
+        background="bg-navy"
+      />
+
       {/* ════════ CTA ════════ */}
       <section className="relative py-24 lg:py-32 bg-navy-mid overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -445,10 +456,10 @@ const ConversationalAI = () => {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
-                to="/services/custom-ai-development"
+                to="/packages"
                 className="btn-outline inline-flex items-center gap-2 text-lg px-10 py-4"
               >
-                Explore More Services
+                Compare Packages
               </Link>
             </div>
           </AnimatedSection>

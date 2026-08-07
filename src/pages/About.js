@@ -44,80 +44,139 @@ const values = [
     icon: Lightbulb,
     title: "Innovation First",
     description:
-      "We stay ahead of the curve, constantly exploring cutting-edge AI research and translating it into real-world solutions.",
+      "We stay ahead of the curve, constantly testing new AI research, platforms and channels, then keeping only what actually works for clients.",
   },
   {
     icon: Target,
     title: "Results-Driven",
     description:
-      "Every project is benchmarked against measurable outcomes, time saved, revenue gained, efficiency improved.",
+      "Every project is benchmarked against measurable outcomes, revenue earned, hours reclaimed, conversion lifted, cost per acquisition reduced.",
   },
   {
     icon: Handshake,
     title: "True Partnership",
     description:
-      "We embed ourselves into your team, understanding your business deeply before writing a single line of code.",
+      "We embed into your team and learn how the business really runs before writing a line of code or spending a pound of ad budget.",
   },
   {
     icon: Heart,
     title: "Craft & Quality",
     description:
-      "We take pride in clean architecture, robust testing, and solutions that stand the test of time.",
+      "Clean architecture, considered design, robust testing and copy someone actually wrote. Nothing here is generated and shipped unread.",
   },
   {
     icon: Rocket,
     title: "Speed to Market",
     description:
-      "We move fast without cutting corners, agile sprints, rapid prototyping, and iterative delivery.",
+      "Short sprints, live preview links from week one, and a deployable release long before the final invoice.",
   },
   {
     icon: Eye,
     title: "Radical Transparency",
     description:
-      "No black boxes. We keep you informed at every stage with clear communication and open roadmaps.",
+      "No black boxes, no hostage accounts. You own the code, the domains, the ad accounts and the design files, from day one.",
   },
 ];
 
 const team = [
   {
     name: "Joseph Lee",
-    role: "AI Architect",
-    bio: "AI strategist with 10+ years building intelligent systems for enterprise clients worldwide.",
-    image: "JA",
+    role: "Founder & AI Architect",
+    bio: "AI strategist with 10+ years building intelligent systems, now leading how automation is designed into every client engagement.",
+    image: "JL",
   },
   {
     name: "Sarah Khan",
     role: "Head of AI Engineering",
-    bio: "Former ML lead at a Fortune 500. Specializes in NLP, computer vision, and production AI pipelines.",
+    bio: "Former ML lead at a Fortune 500. Specializes in NLP, computer vision, and production AI pipelines that survive real traffic.",
     image: "SK",
   },
   {
     name: "Fentola James",
     role: "Lead Full-Stack Developer",
-    bio: "Architect behind our SaaS platform. Obsessed with performance, scalability, and developer experience.",
+    bio: "Heads web, Shopify and WordPress delivery. Obsessed with performance, accessibility and code the next developer can read.",
     image: "FJ",
   },
   {
     name: "Victoria Zoe",
-    role: "Business Developer",
-    bio: "Bridges the gap between business needs and AI capabilities. Expert in automation design and process optimization.",
+    role: "Head of Growth & Brand",
+    bio: "Runs brand, social and paid media. Turns positioning into campaigns that produce pipeline rather than applause.",
     image: "VZ",
   },
 ];
 
 const milestones = [
-  { year: "2019", title: "Founded", desc: "Codilated was born from a simple belief, AI should be accessible to every business." },
-  { year: "2020", title: "First Enterprise Client", desc: "Landed our first Fortune 500 contract, automating supply chain workflows." },
-  { year: "2022", title: "50+ Projects Delivered", desc: "Expanded our team and crossed the 50-project milestone with a 98% satisfaction rate." },
-  { year: "2024", title: "Global Expansion", desc: "Opened operations across 3 continents, serving clients in 15+ countries." },
-  { year: "2025", title: "150+ Projects & Counting", desc: "Recognized as a top AI solutions provider with 40+ enterprise clients." },
+  {
+    year: "2019",
+    title: "Founded",
+    desc: "Codilated started as a two-person web studio with a simple belief: good technology should be accessible to every business.",
+  },
+  {
+    year: "2020",
+    title: "Commerce & Brand Practice",
+    desc: "Added Shopify, WordPress and branding as clients kept asking us to build the whole thing, not just the front end.",
+  },
+  {
+    year: "2022",
+    title: "50+ Projects Delivered",
+    desc: "Grew the team and crossed the 50-project milestone with an in-house marketing practice and a 98% satisfaction rate.",
+  },
+  {
+    year: "2024",
+    title: "AI Becomes the Flagship",
+    desc: "Automation and conversational AI moved from experiment to our largest service line, serving clients in 15+ countries.",
+  },
+  {
+    year: "2025",
+    title: "150+ Projects & Counting",
+    desc: "Ten connected service lines under one roof, from brand and build through to marketing and always-on AI agents.",
+  },
 ];
 
 const companyStats = [
   { icon: Award, value: "150+", label: "Projects Delivered" },
-  { icon: Building2, value: "40+", label: "Enterprise Clients" },
-  { icon: Users, value: "25+", label: "AI Specialists" },
+  { icon: Building2, value: "10", label: "Service Lines" },
+  { icon: Users, value: "25+", label: "Specialists On Team" },
   { icon: Globe, value: "15+", label: "Countries Served" },
+];
+
+const disciplines = [
+  {
+    title: "Engineering",
+    items: [
+      "Full-stack web & app development",
+      "Shopify & Shopify Plus",
+      "WordPress & WooCommerce",
+      "APIs, integrations & cloud infrastructure",
+    ],
+  },
+  {
+    title: "Creative",
+    items: [
+      "Brand strategy & visual identity",
+      "UI/UX and design systems",
+      "Short-form video & social creative",
+      "Copywriting & messaging",
+    ],
+  },
+  {
+    title: "Growth",
+    items: [
+      "SEO & content marketing",
+      "Google, Meta & LinkedIn advertising",
+      "Social media management",
+      "Lifecycle email & conversion optimisation",
+    ],
+  },
+  {
+    title: "Intelligence",
+    items: [
+      "AI automation & workflow agents",
+      "Chatbots & voice agents",
+      "Custom AI products & copilots",
+      "Predictive analytics & dashboards",
+    ],
+  },
 ];
 
 // ─── Component ───────────────────────────────────────────────────────
@@ -130,8 +189,8 @@ const About = () => {
       transition={{ duration: 0.4 }}
     >
       <Seo
-        title="About Codilated, AI Engineers Building Smarter Workflows"
-        description="Meet the AI engineering team behind Codilated. We design intelligent automation, conversational AI, and custom ML systems that deliver measurable ROI."
+        title="About Codilated, An AI-First Digital Agency"
+        description="Meet the team behind Codilated: engineers, designers and marketers building AI automation, websites, online stores, brands and campaigns under one roof."
       />
       {/* ════════ HERO SECTION ════════ */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-hero-gradient noise-overlay">
@@ -189,17 +248,18 @@ const About = () => {
                 variants={itemVariants}
                 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.08] tracking-tight mb-6"
               >
-                We're on a Mission to Make{" "}
-                <span className="gradient-text">AI Accessible</span> for Every Business
+                One Team for Your{" "}
+                <span className="gradient-text">Brand, Build</span> and Everything After It
               </motion.h1>
 
               <motion.p
                 variants={itemVariants}
                 className="text-lg sm:text-xl text-white/50 max-w-2xl mb-10 leading-relaxed"
               >
-                Codilated is a team of AI engineers, architects, and strategists
-                building intelligent automation that transforms how companies
-                operate, compete, and grow.
+                Codilated is an AI-first digital agency of engineers, designers
+                and marketers. We build the websites, stores, brands, campaigns
+                and AI systems that grow modern businesses, and we're
+                accountable for how they perform together.
               </motion.p>
 
               <motion.div
@@ -266,27 +326,28 @@ const About = () => {
             <AnimatedSection direction="left">
               <span className="section-tag">Our Story</span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6">
-                From a Bold Idea to a{" "}
-                <span className="gradient-text">Global AI Partner</span>
+                From a Web Studio to a{" "}
+                <span className="gradient-text">Full Growth Partner</span>
               </h2>
               <div className="space-y-5 text-white/50 text-lg leading-relaxed">
                 <p>
-                  Codilated started with a simple observation: most businesses know
-                  AI can help them, but they don't know where to start. The gap
-                  between cutting-edge research and practical implementation was
-                  massive.
+                  We started out building websites. It didn't take long to notice
+                  the pattern: a beautiful site would launch, and then nothing
+                  much would happen, because the brand was unclear, nobody was
+                  driving traffic, and every enquiry sat unanswered for two days.
                 </p>
                 <p>
-                  We set out to bridge that gap, building a team that combines deep
-                  AI expertise with real-world business understanding. Today, we've
-                  delivered 150+ projects across industries, helping companies
-                  automate workflows, build intelligent products, and unlock the
-                  full potential of their data.
+                  So we kept adding the missing pieces. Branding, so people
+                  understood what you actually do. Shopify and WordPress, because
+                  that's what most businesses genuinely run on. Social and
+                  marketing, to fill the funnel. Then AI automation, to handle the
+                  follow-up, support and admin that used to require hiring.
                 </p>
                 <p>
-                  Our approach is simple: understand the problem deeply, design
-                  the right AI solution, build it with engineering excellence, and
-                  deploy it fast.
+                  Today AI is our flagship practice and the thread through
+                  everything else, 150+ projects across 15+ countries. The
+                  approach hasn't changed: understand the problem deeply, build
+                  the right thing properly, then measure whether it worked.
                 </p>
               </div>
             </AnimatedSection>
@@ -327,6 +388,57 @@ const About = () => {
               </div>
             </AnimatedSection>
           </div>
+        </div>
+      </section>
+
+      {/* ════════ DISCIPLINES ════════ */}
+      <section className="relative py-20 lg:py-24 bg-navy border-y border-white/5 overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-sky/3 rounded-full blur-[150px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-12 max-w-2xl mx-auto">
+            <span className="section-tag">Under One Roof</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-4 mb-5 text-balance">
+              Four Disciplines,{" "}
+              <span className="gradient-text">One Accountable Team</span>
+            </h2>
+            <p className="text-white/50 leading-relaxed">
+              Most businesses juggle a developer, a designer, a marketing agency
+              and an AI consultant who have never spoken to each other. We put
+              all four in the same room, on the same brief.
+            </p>
+          </AnimatedSection>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {disciplines.map((group) => (
+              <motion.div
+                key={group.title}
+                variants={itemVariants}
+                className="glass-card p-6 hover:border-coral/20 transition-colors duration-300"
+              >
+                <h3 className="text-[11px] font-mono font-bold text-coral uppercase tracking-wider mb-4">
+                  {group.title}
+                </h3>
+                <ul className="space-y-3">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-sm text-white/50 leading-relaxed"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-coral/60 flex-shrink-0 mt-1.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -390,8 +502,9 @@ const About = () => {
               Codilated
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto text-lg">
-              A tight-knit team of AI engineers, architects, and strategists who
-              are passionate about building intelligent systems.
+              A tight-knit team of engineers, designers, marketers and AI
+              specialists, with senior people on every project rather than
+              behind a sales deck.
             </p>
           </AnimatedSection>
 
@@ -457,11 +570,10 @@ const About = () => {
                   Our Mission
                 </h3>
                 <p className="text-white/50 text-lg leading-relaxed">
-                  To democratize artificial intelligence by building practical,
-                  powerful AI solutions that any business can deploy, regardless
-                  of size, industry, or technical expertise. We believe the
-                  companies that embrace AI today will define the industries of
-                  tomorrow.
+                  To give growing businesses the same digital firepower as the
+                  giants, a sharp brand, a fast website or store, marketing that
+                  compounds and AI doing the repetitive work, without needing an
+                  in-house department for each one.
                 </p>
               </div>
             </AnimatedSection>
@@ -475,10 +587,10 @@ const About = () => {
                   Our Vision
                 </h3>
                 <p className="text-white/50 text-lg leading-relaxed">
-                  A world where every business has an AI co-pilot, automating the
-                  mundane, surfacing insights from data, and empowering teams to
-                  focus on creative, high-impact work. We envision a future where
-                  human ingenuity and AI capability work hand in hand.
+                  A world where every business runs on systems that quietly work
+                  in the background, a site that sells, marketing that compounds
+                  and AI co-pilots handling the mundane, so teams spend their
+                  days on creative, high-impact work instead of admin.
                 </p>
               </div>
             </AnimatedSection>
@@ -500,8 +612,9 @@ const About = () => {
               <span className="gradient-text">Future Together?</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
-              Whether you're looking to automate your business, build an
-              AI-powered product, or just explore what's possible, let's talk.
+              Whether you need a new site, a store that converts, a brand
+              refresh, a marketing engine or AI agents running in the
+              background, let's talk about where to start.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact" className="btn-coral inline-flex items-center gap-2 text-lg px-10 py-4">

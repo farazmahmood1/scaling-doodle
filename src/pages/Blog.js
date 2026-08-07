@@ -6,7 +6,6 @@ import {
   Search,
   Clock,
   User,
-  Tag,
   Calendar,
   Sparkles,
   Bot,
@@ -14,6 +13,11 @@ import {
   TrendingUp,
   MessageSquare,
   Code2,
+  ShoppingBag,
+  Video,
+  Gauge,
+  Palette,
+  Layers,
 } from "lucide-react";
 import AnimatedSection from "../components/ui/AnimatedSection";
 import Seo from "../components/ui/Seo";
@@ -37,24 +41,120 @@ const itemVariants = {
 const categories = [
   "All",
   "AI Automation",
-  "Machine Learning",
   "Conversational AI",
+  "Machine Learning",
   "Data Analytics",
+  "Web Development",
+  "E-Commerce",
+  "Social Media",
+  "SEO & Marketing",
+  "Branding & Design",
   "Industry Trends",
 ];
 
 const blogPosts = [
   {
+    id: "ai-first-growth-stack",
+    title: "The AI-First Growth Stack: Why Brand, Site and Marketing Compound",
+    excerpt:
+      "Most businesses buy a website, a brand, some ads and an AI tool from four different vendors. Here's what happens when those four things are designed as one system instead.",
+    category: "Industry Trends",
+    author: "Victoria Zoe",
+    date: "August 4, 2026",
+    readTime: "9 min read",
+    icon: Layers,
+    featured: true,
+    image: "linear-gradient(135deg, #e44946 0%, #ef6c68 50%, #0A192F 100%)",
+  },
+  {
+    id: "shopify-conversion-optimisation",
+    title: "Shopify Conversion Optimisation: Where Stores Actually Lose Money",
+    excerpt:
+      "Six leaks we find in almost every Shopify audit, ranked by how much revenue they cost, and the fixes that reliably move conversion rate within a month.",
+    category: "E-Commerce",
+    author: "Fentola James",
+    date: "July 22, 2026",
+    readTime: "8 min read",
+    icon: ShoppingBag,
+    featured: false,
+    image: "linear-gradient(135deg, #0D2137 0%, #e44946 100%)",
+  },
+  {
+    id: "seo-in-the-age-of-ai-answers",
+    title: "SEO in the Age of AI Answers: How to Get Cited, Not Just Ranked",
+    excerpt:
+      "AI Overviews, ChatGPT and Perplexity now sit between your content and your customer. Here's what actually earns a citation, and what stopped working.",
+    category: "SEO & Marketing",
+    author: "Victoria Zoe",
+    date: "July 8, 2026",
+    readTime: "10 min read",
+    icon: Search,
+    featured: false,
+    image: "linear-gradient(135deg, #112240 0%, #ef6c68 100%)",
+  },
+  {
+    id: "short-form-video-system",
+    title: "The Short-Form Video System That Actually Builds Pipeline",
+    excerpt:
+      "How to produce twenty good assets a month without burning out your team, and why the hook matters more than the production budget.",
+    category: "Social Media",
+    author: "Victoria Zoe",
+    date: "June 24, 2026",
+    readTime: "7 min read",
+    icon: Video,
+    featured: false,
+    image: "linear-gradient(135deg, #c83c38 0%, #0D2137 100%)",
+  },
+  {
+    id: "wordpress-speed-what-works",
+    title: "Why Your WordPress Site Is Slow, and What Actually Fixes It",
+    excerpt:
+      "A caching plugin is not a performance strategy. The real culprits are usually your page builder, your plugin count and your image pipeline.",
+    category: "Web Development",
+    author: "Fentola James",
+    date: "June 10, 2026",
+    readTime: "7 min read",
+    icon: Gauge,
+    featured: false,
+    image: "linear-gradient(135deg, #0A192F 0%, #D0EAF5 100%)",
+  },
+  {
+    id: "brand-system-not-just-logo",
+    title: "A Brand Is a System, Not a Logo File",
+    excerpt:
+      "Why identities drift within six months of launch, and how design tokens, templates and guidelines keep a growing team consistent without policing.",
+    category: "Branding & Design",
+    author: "Victoria Zoe",
+    date: "May 27, 2026",
+    readTime: "6 min read",
+    icon: Palette,
+    featured: false,
+    image: "linear-gradient(135deg, #0A192F 0%, #e44946 50%, #112240 100%)",
+  },
+  {
+    id: "choosing-your-web-stack",
+    title: "React, Shopify or WordPress? Choosing a Stack You Won't Regret",
+    excerpt:
+      "An honest decision framework for picking the platform behind your next build, including the cases where we recommend against ourselves.",
+    category: "Web Development",
+    author: "Fentola James",
+    date: "May 13, 2026",
+    readTime: "8 min read",
+    icon: Code2,
+    featured: false,
+    image: "linear-gradient(135deg, #0D2137 0%, #D0EAF5 100%)",
+  },
+  {
     id: "ai-automation-transforming-business-2025",
-    title: "How AI Automation Is Transforming Business Operations in 2025",
+    title: "How AI Automation Is Transforming Business Operations",
     excerpt:
       "Discover how intelligent automation is reshaping workflows, reducing costs by up to 60%, and enabling teams to focus on high-value strategic work.",
     category: "AI Automation",
-    author: "Hashim Ali",
+    author: "Victoria Zoe",
     date: "March 28, 2025",
     readTime: "8 min read",
     icon: Bot,
-    featured: true,
+    featured: false,
     image: "linear-gradient(135deg, #e44946 0%, #ef6c68 50%, #0A192F 100%)",
   },
   {
@@ -63,7 +163,7 @@ const blogPosts = [
     excerpt:
       "Learn the architecture behind AI chatbots and voice agents that drive real business results, from lead qualification to customer support.",
     category: "Conversational AI",
-    author: "Hashim Ali",
+    author: "Victoria Zoe",
     date: "March 15, 2025",
     readTime: "6 min read",
     icon: MessageSquare,
@@ -76,7 +176,7 @@ const blogPosts = [
     excerpt:
       "How companies are leveraging AI-powered predictive models to forecast demand, optimize pricing, and make data-driven decisions faster than ever.",
     category: "Data Analytics",
-    author: "Hashim Ali",
+    author: "Victoria Zoe",
     date: "March 5, 2025",
     readTime: "7 min read",
     icon: TrendingUp,
@@ -89,7 +189,7 @@ const blogPosts = [
     excerpt:
       "From model training to deployment, a comprehensive guide to building ML pipelines that are robust, scalable, and maintainable in production.",
     category: "Machine Learning",
-    author: "Hashim Ali",
+    author: "Victoria Zoe",
     date: "February 22, 2025",
     readTime: "10 min read",
     icon: Brain,
@@ -102,7 +202,7 @@ const blogPosts = [
     excerpt:
       "Explore how AI-driven outreach, smart scoring, and automated follow-ups are helping B2B companies 10x their qualified leads.",
     category: "AI Automation",
-    author: "Hashim Ali",
+    author: "Victoria Zoe",
     date: "February 10, 2025",
     readTime: "5 min read",
     icon: Sparkles,
@@ -115,7 +215,7 @@ const blogPosts = [
     excerpt:
       "Everything you need to know about building AI-powered SaaS products, from architecture decisions to intelligent feature design.",
     category: "Industry Trends",
-    author: "Hashim Ali",
+    author: "Victoria Zoe",
     date: "January 30, 2025",
     readTime: "9 min read",
     icon: Code2,
@@ -149,8 +249,8 @@ const Blog = () => {
       transition={{ duration: 0.4 }}
     >
       <Seo
-        title="AI Insights & Automation Blog | Codilated"
-        description="Practical guides on AI automation, machine learning, conversational AI, and predictive analytics, written by Codilated's AI engineers."
+        title="Insights on AI, Web, E-Commerce & Marketing | Codilated Blog"
+        description="Practical guides on AI automation, web and Shopify development, WordPress, SEO, social media and branding, written by the Codilated team."
       />
       {/* ════════ HERO ════════ */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-hero-gradient noise-overlay overflow-hidden">
@@ -179,11 +279,12 @@ const Blog = () => {
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-6">
               Insights on{" "}
-              <span className="gradient-text">AI & Automation</span>
+              <span className="gradient-text">Building & Growing</span>
             </h1>
             <p className="text-lg sm:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed">
-              Explore our latest thoughts on artificial intelligence, automation
-              strategies, and the future of intelligent business solutions.
+              Field notes from the work: AI automation, web and e-commerce
+              builds, WordPress, SEO, social media and branding. Written by the
+              people who ship it.
             </p>
           </motion.div>
 
@@ -427,12 +528,12 @@ const Blog = () => {
           <AnimatedSection>
             <span className="section-tag">Stay Updated</span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-6 text-balance">
-              Get AI Insights{" "}
+              Get These Insights{" "}
               <span className="gradient-text">Delivered</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
-              Subscribe to our newsletter for the latest insights on AI
-              automation, machine learning trends, and actionable strategies.
+              One monthly email on AI, web, e-commerce and growth. Practical
+              things we've actually tested on client work. No fluff, no spam.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
